@@ -1,0 +1,95 @@
+-- Table: public.oro_website
+
+-- DROP TABLE IF EXISTS public.oro_website;
+
+CREATE TABLE IF NOT EXISTS public.oro_website
+(
+    id integer NOT NULL DEFAULT nextval('oro_website_id_seq'::regclass),
+    organization_id integer,
+    business_unit_owner_id integer,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    is_default boolean NOT NULL,
+    guest_role_id integer,
+    default_role_id integer,
+    serialized_data jsonb,
+    CONSTRAINT oro_website_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_8fc8ab3159294170 FOREIGN KEY (business_unit_owner_id)
+        REFERENCES public.oro_business_unit (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_website_default_role_id FOREIGN KEY (default_role_id)
+        REFERENCES public.oro_customer_user_role (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE RESTRICT,
+    CONSTRAINT fk_oro_website_guest_role_id FOREIGN KEY (guest_role_id)
+        REFERENCES public.oro_customer_user_role (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE RESTRICT,
+    CONSTRAINT fk_oro_website_organization_id FOREIGN KEY (organization_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_website
+    OWNER to oro_user;
+-- Index: idx_8fc8ab31248673e9
+
+-- DROP INDEX IF EXISTS public.idx_8fc8ab31248673e9;
+
+CREATE INDEX IF NOT EXISTS idx_8fc8ab31248673e9
+    ON public.oro_website USING btree
+    (default_role_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_8fc8ab3132c8a3de
+
+-- DROP INDEX IF EXISTS public.idx_8fc8ab3132c8a3de;
+
+CREATE INDEX IF NOT EXISTS idx_8fc8ab3132c8a3de
+    ON public.oro_website USING btree
+    (organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_8fc8ab3159294170
+
+-- DROP INDEX IF EXISTS public.idx_8fc8ab3159294170;
+
+CREATE INDEX IF NOT EXISTS idx_8fc8ab3159294170
+    ON public.oro_website USING btree
+    (business_unit_owner_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_website_created_at
+
+-- DROP INDEX IF EXISTS public.idx_oro_website_created_at;
+
+CREATE INDEX IF NOT EXISTS idx_oro_website_created_at
+    ON public.oro_website USING btree
+    (created_at ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_website_guest_role_id
+
+-- DROP INDEX IF EXISTS public.idx_oro_website_guest_role_id;
+
+CREATE INDEX IF NOT EXISTS idx_oro_website_guest_role_id
+    ON public.oro_website USING btree
+    (guest_role_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_website_updated_at
+
+-- DROP INDEX IF EXISTS public.idx_oro_website_updated_at;
+
+CREATE INDEX IF NOT EXISTS idx_oro_website_updated_at
+    ON public.oro_website USING btree
+    (updated_at ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: uidx_oro_website_name_organization
+
+-- DROP INDEX IF EXISTS public.uidx_oro_website_name_organization;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uidx_oro_website_name_organization
+    ON public.oro_website USING btree
+    (name COLLATE pg_catalog."default" ASC NULLS LAST, organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;

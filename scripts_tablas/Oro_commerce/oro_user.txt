@@ -1,0 +1,146 @@
+-- Table: public.oro_user
+
+-- DROP TABLE IF EXISTS public.oro_user;
+
+CREATE TABLE IF NOT EXISTS public.oro_user
+(
+    id integer NOT NULL DEFAULT nextval('oro_user_id_seq'::regclass),
+    business_unit_owner_id integer,
+    avatar_id integer,
+    organization_id integer,
+    auth_status_id character varying(32) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    username character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    username_lowercase character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    email_lowercase character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    phone character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    name_prefix character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    first_name character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    middle_name character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    last_name character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    name_suffix character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    birthday date,
+    enabled boolean NOT NULL,
+    salt character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    confirmation_token character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    password_requested timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    last_login timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    login_count integer NOT NULL DEFAULT 0,
+    createdat timestamp(0) without time zone NOT NULL,
+    updatedat timestamp(0) without time zone NOT NULL,
+    title character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    password_changed timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    googleid character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    serialized_data jsonb,
+    CONSTRAINT oro_user_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_f82840bc59294170 FOREIGN KEY (business_unit_owner_id)
+        REFERENCES public.oro_business_unit (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_user_auth_status_id FOREIGN KEY (auth_status_id)
+        REFERENCES public.oro_enum_auth_status (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_user_avatar_id FOREIGN KEY (avatar_id)
+        REFERENCES public.oro_attachment_file (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_user_organization_id FOREIGN KEY (organization_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_user
+    OWNER to oro_user;
+-- Index: idx_f82840bc32c8a3de
+
+-- DROP INDEX IF EXISTS public.idx_f82840bc32c8a3de;
+
+CREATE INDEX IF NOT EXISTS idx_f82840bc32c8a3de
+    ON public.oro_user USING btree
+    (organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_f82840bc59294170
+
+-- DROP INDEX IF EXISTS public.idx_f82840bc59294170;
+
+CREATE INDEX IF NOT EXISTS idx_f82840bc59294170
+    ON public.oro_user USING btree
+    (business_unit_owner_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_user_auth_status_id
+
+-- DROP INDEX IF EXISTS public.idx_oro_user_auth_status_id;
+
+CREATE INDEX IF NOT EXISTS idx_oro_user_auth_status_id
+    ON public.oro_user USING btree
+    (auth_status_id COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_user_avatar_id
+
+-- DROP INDEX IF EXISTS public.idx_oro_user_avatar_id;
+
+CREATE INDEX IF NOT EXISTS idx_oro_user_avatar_id
+    ON public.oro_user USING btree
+    (avatar_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_user_email_lowercase
+
+-- DROP INDEX IF EXISTS public.idx_oro_user_email_lowercase;
+
+CREATE INDEX IF NOT EXISTS idx_oro_user_email_lowercase
+    ON public.oro_user USING btree
+    (email_lowercase COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_user_username_lowercase
+
+-- DROP INDEX IF EXISTS public.idx_oro_user_username_lowercase;
+
+CREATE INDEX IF NOT EXISTS idx_oro_user_username_lowercase
+    ON public.oro_user USING btree
+    (username_lowercase COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_idx_user_googleid
+
+-- DROP INDEX IF EXISTS public.oro_idx_user_googleid;
+
+CREATE INDEX IF NOT EXISTS oro_idx_user_googleid
+    ON public.oro_user USING btree
+    (googleid COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_idx_user_phone
+
+-- DROP INDEX IF EXISTS public.oro_idx_user_phone;
+
+CREATE INDEX IF NOT EXISTS oro_idx_user_phone
+    ON public.oro_user USING btree
+    (phone COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: uniq_f82840bce7927c74
+
+-- DROP INDEX IF EXISTS public.uniq_f82840bce7927c74;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uniq_f82840bce7927c74
+    ON public.oro_user USING btree
+    (email COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: uniq_f82840bcf85e0677
+
+-- DROP INDEX IF EXISTS public.uniq_f82840bcf85e0677;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uniq_f82840bcf85e0677
+    ON public.oro_user USING btree
+    (username COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: user_first_name_last_name_idx
+
+-- DROP INDEX IF EXISTS public.user_first_name_last_name_idx;
+
+CREATE INDEX IF NOT EXISTS user_first_name_last_name_idx
+    ON public.oro_user USING btree
+    (first_name COLLATE pg_catalog."default" ASC NULLS LAST, last_name COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;

@@ -1,0 +1,132 @@
+-- Table: public.oro_customer_user
+
+-- DROP TABLE IF EXISTS public.oro_customer_user;
+
+CREATE TABLE IF NOT EXISTS public.oro_customer_user
+(
+    id integer NOT NULL DEFAULT nextval('oro_customer_user_id_seq'::regclass),
+    owner_id integer,
+    organization_id integer,
+    customer_id integer,
+    website_id integer,
+    auth_status_id character varying(32) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    username character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    email_lowercase character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    name_prefix character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    first_name character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    middle_name character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    last_name character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    name_suffix character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    birthday date,
+    enabled boolean NOT NULL,
+    confirmed boolean NOT NULL,
+    is_guest boolean NOT NULL DEFAULT false,
+    salt character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    confirmation_token character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    password_requested timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    password_changed timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    last_login timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    login_count integer NOT NULL DEFAULT 0,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    cookies_accepted boolean NOT NULL DEFAULT false,
+    serialized_data jsonb,
+    ac_last_contact_date timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    ac_last_contact_date_in timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    ac_last_contact_date_out timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    ac_contact_count integer,
+    ac_contact_count_in integer,
+    ac_contact_count_out integer,
+    CONSTRAINT oro_customer_user_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_9511ceb518f45c82 FOREIGN KEY (website_id)
+        REFERENCES public.oro_website (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_9511ceb532c8a3de FOREIGN KEY (organization_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_9511ceb56f08dc2f FOREIGN KEY (auth_status_id)
+        REFERENCES public.oro_enum_cu_auth_status (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_9511ceb59395c3f3 FOREIGN KEY (customer_id)
+        REFERENCES public.oro_customer (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_customer_user_owner_id FOREIGN KEY (owner_id)
+        REFERENCES public.oro_user (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_customer_user
+    OWNER to oro_user;
+-- Index: idx_9511ceb518f45c82
+
+-- DROP INDEX IF EXISTS public.idx_9511ceb518f45c82;
+
+CREATE INDEX IF NOT EXISTS idx_9511ceb518f45c82
+    ON public.oro_customer_user USING btree
+    (website_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_9511ceb532c8a3de
+
+-- DROP INDEX IF EXISTS public.idx_9511ceb532c8a3de;
+
+CREATE INDEX IF NOT EXISTS idx_9511ceb532c8a3de
+    ON public.oro_customer_user USING btree
+    (organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_9511ceb56f08dc2f
+
+-- DROP INDEX IF EXISTS public.idx_9511ceb56f08dc2f;
+
+CREATE INDEX IF NOT EXISTS idx_9511ceb56f08dc2f
+    ON public.oro_customer_user USING btree
+    (auth_status_id COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_9511ceb57e3c61f9
+
+-- DROP INDEX IF EXISTS public.idx_9511ceb57e3c61f9;
+
+CREATE INDEX IF NOT EXISTS idx_9511ceb57e3c61f9
+    ON public.oro_customer_user USING btree
+    (owner_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_9511ceb59395c3f3
+
+-- DROP INDEX IF EXISTS public.idx_9511ceb59395c3f3;
+
+CREATE INDEX IF NOT EXISTS idx_9511ceb59395c3f3
+    ON public.oro_customer_user USING btree
+    (customer_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_customer_user_email
+
+-- DROP INDEX IF EXISTS public.idx_oro_customer_user_email;
+
+CREATE INDEX IF NOT EXISTS idx_oro_customer_user_email
+    ON public.oro_customer_user USING btree
+    (email COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_customer_user_email_lowercase
+
+-- DROP INDEX IF EXISTS public.idx_oro_customer_user_email_lowercase;
+
+CREATE INDEX IF NOT EXISTS idx_oro_customer_user_email_lowercase
+    ON public.oro_customer_user USING btree
+    (email_lowercase COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_idx_3708e583ee255f84
+
+-- DROP INDEX IF EXISTS public.oro_idx_3708e583ee255f84;
+
+CREATE INDEX IF NOT EXISTS oro_idx_3708e583ee255f84
+    ON public.oro_customer_user USING btree
+    (cookies_accepted ASC NULLS LAST)
+    TABLESPACE pg_default;

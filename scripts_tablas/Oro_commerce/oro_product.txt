@@ -1,0 +1,390 @@
+-- Table: public.oro_product
+
+-- DROP TABLE IF EXISTS public.oro_product;
+
+CREATE TABLE IF NOT EXISTS public.oro_product
+(
+    id integer NOT NULL DEFAULT nextval('oro_product_id_seq'::regclass),
+    organization_id integer,
+    business_unit_owner_id integer,
+    primary_unit_precision_id integer,
+    brand_id integer,
+    inventory_status_id character varying(32) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    attribute_family_id integer,
+    sku character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    sku_uppercase character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    name_uppercase character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    variant_fields text COLLATE pg_catalog."default",
+    status character varying(16) COLLATE pg_catalog."default" NOT NULL,
+    type character varying(32) COLLATE pg_catalog."default" NOT NULL,
+    is_featured boolean NOT NULL DEFAULT false,
+    is_new_arrival boolean NOT NULL DEFAULT false,
+    pagetemplate_id integer,
+    category_id integer,
+    category_sort_order double precision,
+    taxcode_id integer,
+    manageinventory_id integer,
+    highlightlowinventory_id integer,
+    inventorythreshold_id integer,
+    lowinventorythreshold_id integer,
+    minimumquantitytoorder_id integer,
+    maximumquantitytoorder_id integer,
+    decrementquantity_id integer,
+    backorder_id integer,
+    isupcoming_id integer,
+    availability_date timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    serialized_data jsonb,
+    CONSTRAINT oro_product_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_1bedf27b1907bb3 FOREIGN KEY (primary_unit_precision_id)
+        REFERENCES public.oro_product_unit_precision (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1bedf27b33604251 FOREIGN KEY (decrementquantity_id)
+        REFERENCES public.oro_entity_fallback_value (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1bedf27b47480463 FOREIGN KEY (minimumquantitytoorder_id)
+        REFERENCES public.oro_entity_fallback_value (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1bedf27b59294170 FOREIGN KEY (business_unit_owner_id)
+        REFERENCES public.oro_business_unit (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1bedf27b721a005a FOREIGN KEY (inventorythreshold_id)
+        REFERENCES public.oro_entity_fallback_value (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1bedf27b79fdcceb FOREIGN KEY (maximumquantitytoorder_id)
+        REFERENCES public.oro_entity_fallback_value (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1bedf27b7d806669 FOREIGN KEY (highlightlowinventory_id)
+        REFERENCES public.oro_entity_fallback_value (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1bedf27b7e7f26ec FOREIGN KEY (attribute_family_id)
+        REFERENCES public.oro_attribute_family (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE RESTRICT,
+    CONSTRAINT fk_1bedf27b9bc68722 FOREIGN KEY (lowinventorythreshold_id)
+        REFERENCES public.oro_entity_fallback_value (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1bedf27bec4be9d5 FOREIGN KEY (inventory_status_id)
+        REFERENCES public.oro_enum_prod_inventory_status (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1bedf27bf5f847f6 FOREIGN KEY (manageinventory_id)
+        REFERENCES public.oro_entity_fallback_value (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_product_backorder_id FOREIGN KEY (backorder_id)
+        REFERENCES public.oro_entity_fallback_value (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_product_brand_id FOREIGN KEY (brand_id)
+        REFERENCES public.oro_brand (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_product_category_id FOREIGN KEY (category_id)
+        REFERENCES public.oro_catalog_category (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_product_isupcoming_id FOREIGN KEY (isupcoming_id)
+        REFERENCES public.oro_entity_fallback_value (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_product_organization_id FOREIGN KEY (organization_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_product_pagetemplate_id FOREIGN KEY (pagetemplate_id)
+        REFERENCES public.oro_entity_fallback_value (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_product_taxcode_id FOREIGN KEY (taxcode_id)
+        REFERENCES public.oro_tax_product_tax_code (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_product
+    OWNER to oro_user;
+
+COMMENT ON COLUMN public.oro_product.variant_fields
+    IS '(DC2Type:array)(DC2Type:array)';
+
+COMMENT ON COLUMN public.oro_product.availability_date
+    IS '(DC2Type:datetime)';
+-- Index: idx_1bedf27b32c8a3de
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27b32c8a3de;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27b32c8a3de
+    ON public.oro_product USING btree
+    (organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27b33604251
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27b33604251;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27b33604251
+    ON public.oro_product USING btree
+    (decrementquantity_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27b44f5d008
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27b44f5d008;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27b44f5d008
+    ON public.oro_product USING btree
+    (brand_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27b47480463
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27b47480463;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27b47480463
+    ON public.oro_product USING btree
+    (minimumquantitytoorder_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27b59294170
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27b59294170;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27b59294170
+    ON public.oro_product USING btree
+    (business_unit_owner_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27b721a005a
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27b721a005a;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27b721a005a
+    ON public.oro_product USING btree
+    (inventorythreshold_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27b79fdcceb
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27b79fdcceb;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27b79fdcceb
+    ON public.oro_product USING btree
+    (maximumquantitytoorder_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27b7d806669
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27b7d806669;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27b7d806669
+    ON public.oro_product USING btree
+    (highlightlowinventory_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27b7e7f26ec
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27b7e7f26ec;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27b7e7f26ec
+    ON public.oro_product USING btree
+    (attribute_family_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27b9bc68722
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27b9bc68722;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27b9bc68722
+    ON public.oro_product USING btree
+    (lowinventorythreshold_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27bebed4189
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27bebed4189;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27bebed4189
+    ON public.oro_product USING btree
+    (pagetemplate_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27bec4be9d5
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27bec4be9d5;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27bec4be9d5
+    ON public.oro_product USING btree
+    (inventory_status_id COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1bedf27bf5f847f6
+
+-- DROP INDEX IF EXISTS public.idx_1bedf27bf5f847f6;
+
+CREATE INDEX IF NOT EXISTS idx_1bedf27bf5f847f6
+    ON public.oro_product USING btree
+    (manageinventory_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_backorder_id
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_backorder_id;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_backorder_id
+    ON public.oro_product USING btree
+    (backorder_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_category_id
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_category_id;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_category_id
+    ON public.oro_product USING btree
+    (category_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_created_at
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_created_at;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_created_at
+    ON public.oro_product USING btree
+    (created_at ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_created_at_id_organization
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_created_at_id_organization;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_created_at_id_organization
+    ON public.oro_product USING btree
+    (created_at ASC NULLS LAST, id ASC NULLS LAST, organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_default_name
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_default_name;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_default_name
+    ON public.oro_product USING btree
+    (name COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_default_name_uppercase
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_default_name_uppercase;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_default_name_uppercase
+    ON public.oro_product USING btree
+    (name_uppercase COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_featured
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_featured;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_featured
+    ON public.oro_product USING btree
+    (is_featured ASC NULLS LAST)
+    TABLESPACE pg_default
+    WHERE is_featured = true;
+-- Index: idx_oro_product_id_updated_at
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_id_updated_at;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_id_updated_at
+    ON public.oro_product USING btree
+    (id ASC NULLS LAST, updated_at ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_isupcoming_id
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_isupcoming_id;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_isupcoming_id
+    ON public.oro_product USING btree
+    (isupcoming_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_new_arrival
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_new_arrival;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_new_arrival
+    ON public.oro_product USING btree
+    (is_new_arrival ASC NULLS LAST)
+    TABLESPACE pg_default
+    WHERE is_new_arrival = true;
+-- Index: idx_oro_product_primary_unit_precision_id
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_primary_unit_precision_id;
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_oro_product_primary_unit_precision_id
+    ON public.oro_product USING btree
+    (primary_unit_precision_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_sku
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_sku;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_sku
+    ON public.oro_product USING btree
+    (sku COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_sku_id_organization
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_sku_id_organization;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_sku_id_organization
+    ON public.oro_product USING btree
+    (sku COLLATE pg_catalog."default" ASC NULLS LAST, id ASC NULLS LAST, organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_sku_uppercase
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_sku_uppercase;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_sku_uppercase
+    ON public.oro_product USING btree
+    (sku_uppercase COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_status
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_status;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_status
+    ON public.oro_product USING btree
+    (status COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_status_id_organization
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_status_id_organization;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_status_id_organization
+    ON public.oro_product USING btree
+    (status COLLATE pg_catalog."default" ASC NULLS LAST, id ASC NULLS LAST, organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_taxcode_id
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_taxcode_id;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_taxcode_id
+    ON public.oro_product USING btree
+    (taxcode_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_updated_at
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_updated_at;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_updated_at
+    ON public.oro_product USING btree
+    (updated_at ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_product_updated_at_id_organization
+
+-- DROP INDEX IF EXISTS public.idx_oro_product_updated_at_id_organization;
+
+CREATE INDEX IF NOT EXISTS idx_oro_product_updated_at_id_organization
+    ON public.oro_product USING btree
+    (updated_at ASC NULLS LAST, id ASC NULLS LAST, organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: uidx_oro_product_sku_organization
+
+-- DROP INDEX IF EXISTS public.uidx_oro_product_sku_organization;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uidx_oro_product_sku_organization
+    ON public.oro_product USING btree
+    (sku COLLATE pg_catalog."default" ASC NULLS LAST, organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;

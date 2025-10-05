@@ -1,0 +1,74 @@
+-- Table: public.orocrm_channel
+
+-- DROP TABLE IF EXISTS public.orocrm_channel;
+
+CREATE TABLE IF NOT EXISTS public.orocrm_channel
+(
+    id integer NOT NULL DEFAULT nextval('orocrm_channel_id_seq'::regclass),
+    organization_owner_id integer,
+    data_source_id integer,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    status boolean NOT NULL,
+    channel_type character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    data json,
+    customer_identity character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    createdat timestamp(0) without time zone NOT NULL,
+    updatedat timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    CONSTRAINT orocrm_channel_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_aea90b921a935c57 FOREIGN KEY (data_source_id)
+        REFERENCES public.oro_integration_channel (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_aea90b929124a35b FOREIGN KEY (organization_owner_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.orocrm_channel
+    OWNER to oro_user;
+
+COMMENT ON COLUMN public.orocrm_channel.data
+    IS '(DC2Type:json_array)(DC2Type:json_array)';
+-- Index: crm_channel_channel_type_idx
+
+-- DROP INDEX IF EXISTS public.crm_channel_channel_type_idx;
+
+CREATE INDEX IF NOT EXISTS crm_channel_channel_type_idx
+    ON public.orocrm_channel USING btree
+    (channel_type COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: crm_channel_name_idx
+
+-- DROP INDEX IF EXISTS public.crm_channel_name_idx;
+
+CREATE INDEX IF NOT EXISTS crm_channel_name_idx
+    ON public.orocrm_channel USING btree
+    (name COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: crm_channel_status_idx
+
+-- DROP INDEX IF EXISTS public.crm_channel_status_idx;
+
+CREATE INDEX IF NOT EXISTS crm_channel_status_idx
+    ON public.orocrm_channel USING btree
+    (status ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_aea90b929124a35b
+
+-- DROP INDEX IF EXISTS public.idx_aea90b929124a35b;
+
+CREATE INDEX IF NOT EXISTS idx_aea90b929124a35b
+    ON public.orocrm_channel USING btree
+    (organization_owner_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: uniq_aea90b921a935c57
+
+-- DROP INDEX IF EXISTS public.uniq_aea90b921a935c57;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uniq_aea90b921a935c57
+    ON public.orocrm_channel USING btree
+    (data_source_id ASC NULLS LAST)
+    TABLESPACE pg_default;

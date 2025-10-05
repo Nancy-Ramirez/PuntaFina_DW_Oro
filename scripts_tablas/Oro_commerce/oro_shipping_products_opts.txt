@@ -1,0 +1,91 @@
+-- Table: public.oro_shipping_product_opts
+
+-- DROP TABLE IF EXISTS public.oro_shipping_product_opts;
+
+CREATE TABLE IF NOT EXISTS public.oro_shipping_product_opts
+(
+    id integer NOT NULL DEFAULT nextval('oro_shipping_product_opts_id_seq'::regclass),
+    freight_class_code character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    product_id integer NOT NULL,
+    product_unit_code character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    dimensions_unit_code character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    weight_unit_code character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    weight_value double precision,
+    dimensions_length double precision,
+    dimensions_width double precision,
+    dimensions_height double precision,
+    CONSTRAINT oro_shipping_product_opts_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_a7d10e3c18783723 FOREIGN KEY (freight_class_code)
+        REFERENCES public.oro_shipping_freight_class (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_a7d10e3c4584665a FOREIGN KEY (product_id)
+        REFERENCES public.oro_product (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_a7d10e3c9573674f FOREIGN KEY (product_unit_code)
+        REFERENCES public.oro_product_unit (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_a7d10e3cbe541ca7 FOREIGN KEY (dimensions_unit_code)
+        REFERENCES public.oro_shipping_length_unit (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_a7d10e3cdbf67410 FOREIGN KEY (weight_unit_code)
+        REFERENCES public.oro_shipping_weight_unit (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_shipping_product_opts
+    OWNER to oro_user;
+-- Index: idx_a7d10e3c18783723
+
+-- DROP INDEX IF EXISTS public.idx_a7d10e3c18783723;
+
+CREATE INDEX IF NOT EXISTS idx_a7d10e3c18783723
+    ON public.oro_shipping_product_opts USING btree
+    (freight_class_code COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_a7d10e3c4584665a
+
+-- DROP INDEX IF EXISTS public.idx_a7d10e3c4584665a;
+
+CREATE INDEX IF NOT EXISTS idx_a7d10e3c4584665a
+    ON public.oro_shipping_product_opts USING btree
+    (product_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_a7d10e3c9573674f
+
+-- DROP INDEX IF EXISTS public.idx_a7d10e3c9573674f;
+
+CREATE INDEX IF NOT EXISTS idx_a7d10e3c9573674f
+    ON public.oro_shipping_product_opts USING btree
+    (product_unit_code COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_a7d10e3cbe541ca7
+
+-- DROP INDEX IF EXISTS public.idx_a7d10e3cbe541ca7;
+
+CREATE INDEX IF NOT EXISTS idx_a7d10e3cbe541ca7
+    ON public.oro_shipping_product_opts USING btree
+    (dimensions_unit_code COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_a7d10e3cdbf67410
+
+-- DROP INDEX IF EXISTS public.idx_a7d10e3cdbf67410;
+
+CREATE INDEX IF NOT EXISTS idx_a7d10e3cdbf67410
+    ON public.oro_shipping_product_opts USING btree
+    (weight_unit_code COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_shipping_product_opts_uidx
+
+-- DROP INDEX IF EXISTS public.oro_shipping_product_opts_uidx;
+
+CREATE UNIQUE INDEX IF NOT EXISTS oro_shipping_product_opts_uidx
+    ON public.oro_shipping_product_opts USING btree
+    (product_id ASC NULLS LAST, product_unit_code COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;

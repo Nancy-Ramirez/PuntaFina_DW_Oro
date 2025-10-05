@@ -1,0 +1,163 @@
+-- Table: public.oro_customer
+
+-- DROP TABLE IF EXISTS public.oro_customer;
+
+CREATE TABLE IF NOT EXISTS public.oro_customer
+(
+    id integer NOT NULL DEFAULT nextval('oro_customer_id_seq'::regclass),
+    parent_id integer,
+    group_id integer,
+    owner_id integer,
+    organization_id integer,
+    internal_rating_id character varying(32) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    payment_term_7c4f1e8e_id integer,
+    taxcode_id integer,
+    previous_account_id integer,
+    lifetime numeric(19,4) DEFAULT NULL::numeric,
+    datachannel_id integer,
+    serialized_data jsonb,
+    CONSTRAINT oro_customer_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_ee415e1e32c8a3de FOREIGN KEY (organization_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_ee415e1e82f517ad FOREIGN KEY (internal_rating_id)
+        REFERENCES public.oro_enum_acc_internal_rating (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_ee415e1ed9e03cfd FOREIGN KEY (payment_term_7c4f1e8e_id)
+        REFERENCES public.oro_payment_term (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_ee415e1eec6b1d03 FOREIGN KEY (previous_account_id)
+        REFERENCES public.orocrm_account (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_customer_datachannel_id FOREIGN KEY (datachannel_id)
+        REFERENCES public.orocrm_channel (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_customer_group_id FOREIGN KEY (group_id)
+        REFERENCES public.oro_customer_group (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_customer_owner_id FOREIGN KEY (owner_id)
+        REFERENCES public.oro_user (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_customer_parent_id FOREIGN KEY (parent_id)
+        REFERENCES public.oro_customer (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_customer_taxcode_id FOREIGN KEY (taxcode_id)
+        REFERENCES public.oro_tax_customer_tax_code (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_customer
+    OWNER to oro_user;
+
+COMMENT ON COLUMN public.oro_customer.lifetime
+    IS '(DC2Type:money)';
+-- Index: idx_ee415e1e32c8a3de
+
+-- DROP INDEX IF EXISTS public.idx_ee415e1e32c8a3de;
+
+CREATE INDEX IF NOT EXISTS idx_ee415e1e32c8a3de
+    ON public.oro_customer USING btree
+    (organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_ee415e1e727aca70
+
+-- DROP INDEX IF EXISTS public.idx_ee415e1e727aca70;
+
+CREATE INDEX IF NOT EXISTS idx_ee415e1e727aca70
+    ON public.oro_customer USING btree
+    (parent_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_ee415e1e7e3c61f9
+
+-- DROP INDEX IF EXISTS public.idx_ee415e1e7e3c61f9;
+
+CREATE INDEX IF NOT EXISTS idx_ee415e1e7e3c61f9
+    ON public.oro_customer USING btree
+    (owner_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_ee415e1e82f517ad
+
+-- DROP INDEX IF EXISTS public.idx_ee415e1e82f517ad;
+
+CREATE INDEX IF NOT EXISTS idx_ee415e1e82f517ad
+    ON public.oro_customer USING btree
+    (internal_rating_id COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_ee415e1ed9e03cfd
+
+-- DROP INDEX IF EXISTS public.idx_ee415e1ed9e03cfd;
+
+CREATE INDEX IF NOT EXISTS idx_ee415e1ed9e03cfd
+    ON public.oro_customer USING btree
+    (payment_term_7c4f1e8e_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_ee415e1eec6b1d03
+
+-- DROP INDEX IF EXISTS public.idx_ee415e1eec6b1d03;
+
+CREATE INDEX IF NOT EXISTS idx_ee415e1eec6b1d03
+    ON public.oro_customer USING btree
+    (previous_account_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_ee415e1efe54d947
+
+-- DROP INDEX IF EXISTS public.idx_ee415e1efe54d947;
+
+CREATE INDEX IF NOT EXISTS idx_ee415e1efe54d947
+    ON public.oro_customer USING btree
+    (group_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_ee415e1eff9b4351
+
+-- DROP INDEX IF EXISTS public.idx_ee415e1eff9b4351;
+
+CREATE INDEX IF NOT EXISTS idx_ee415e1eff9b4351
+    ON public.oro_customer USING btree
+    (datachannel_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_customer_created_at
+
+-- DROP INDEX IF EXISTS public.idx_oro_customer_created_at;
+
+CREATE INDEX IF NOT EXISTS idx_oro_customer_created_at
+    ON public.oro_customer USING btree
+    (created_at ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_customer_taxcode_id
+
+-- DROP INDEX IF EXISTS public.idx_oro_customer_taxcode_id;
+
+CREATE INDEX IF NOT EXISTS idx_oro_customer_taxcode_id
+    ON public.oro_customer USING btree
+    (taxcode_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_oro_customer_updated_at
+
+-- DROP INDEX IF EXISTS public.idx_oro_customer_updated_at;
+
+CREATE INDEX IF NOT EXISTS idx_oro_customer_updated_at
+    ON public.oro_customer USING btree
+    (updated_at ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_customer_name_idx
+
+-- DROP INDEX IF EXISTS public.oro_customer_name_idx;
+
+CREATE INDEX IF NOT EXISTS oro_customer_name_idx
+    ON public.oro_customer USING btree
+    (name COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;

@@ -1,0 +1,51 @@
+-- Table: public.oro_promotion_applied_discount
+
+-- DROP TABLE IF EXISTS public.oro_promotion_applied_discount;
+
+CREATE TABLE IF NOT EXISTS public.oro_promotion_applied_discount
+(
+    id integer NOT NULL DEFAULT nextval('oro_promotion_applied_discount_id_seq'::regclass),
+    line_item_id integer,
+    applied_promotion_id integer NOT NULL,
+    amount numeric(19,4) NOT NULL,
+    currency character varying(3) COLLATE pg_catalog."default" NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    serialized_data jsonb,
+    CONSTRAINT oro_promotion_applied_discount_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_c19d7e354adf74b FOREIGN KEY (applied_promotion_id)
+        REFERENCES public.oro_promotion_applied (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_c19d7e3a7cbd339 FOREIGN KEY (line_item_id)
+        REFERENCES public.oro_order_line_item (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_promotion_applied_discount
+    OWNER to oro_user;
+
+COMMENT ON COLUMN public.oro_promotion_applied_discount.amount
+    IS '(DC2Type:money_value)(DC2Type:money_value)';
+
+COMMENT ON COLUMN public.oro_promotion_applied_discount.currency
+    IS '(DC2Type:currency)(DC2Type:currency)';
+-- Index: idx_c19d7e354adf74b
+
+-- DROP INDEX IF EXISTS public.idx_c19d7e354adf74b;
+
+CREATE INDEX IF NOT EXISTS idx_c19d7e354adf74b
+    ON public.oro_promotion_applied_discount USING btree
+    (applied_promotion_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_c19d7e3a7cbd339
+
+-- DROP INDEX IF EXISTS public.idx_c19d7e3a7cbd339;
+
+CREATE INDEX IF NOT EXISTS idx_c19d7e3a7cbd339
+    ON public.oro_promotion_applied_discount USING btree
+    (line_item_id ASC NULLS LAST)
+    TABLESPACE pg_default;

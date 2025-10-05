@@ -1,0 +1,91 @@
+-- Table: public.oro_price_product
+
+-- DROP TABLE IF EXISTS public.oro_price_product;
+
+CREATE TABLE IF NOT EXISTS public.oro_price_product
+(
+    id uuid NOT NULL,
+    price_rule_id integer,
+    unit_code character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    product_id integer NOT NULL,
+    price_list_id integer NOT NULL,
+    product_sku character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    quantity double precision NOT NULL,
+    value numeric(19,4) NOT NULL,
+    currency character varying(3) COLLATE pg_catalog."default" NOT NULL,
+    version integer,
+    serialized_data jsonb,
+    CONSTRAINT oro_price_product_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_f47f707a1f68cb0d FOREIGN KEY (price_rule_id)
+        REFERENCES public.oro_price_rule (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_f47f707a4584665a FOREIGN KEY (product_id)
+        REFERENCES public.oro_product (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_f47f707a5688ded7 FOREIGN KEY (price_list_id)
+        REFERENCES public.oro_price_list (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_oro_price_product_unit_code FOREIGN KEY (unit_code)
+        REFERENCES public.oro_product_unit (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_price_product
+    OWNER to oro_user;
+
+COMMENT ON COLUMN public.oro_price_product.value
+    IS '(DC2Type:money)(DC2Type:money)';
+-- Index: idx_f47f707a1f68cb0d
+
+-- DROP INDEX IF EXISTS public.idx_f47f707a1f68cb0d;
+
+CREATE INDEX IF NOT EXISTS idx_f47f707a1f68cb0d
+    ON public.oro_price_product USING btree
+    (price_rule_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_f47f707a4584665a
+
+-- DROP INDEX IF EXISTS public.idx_f47f707a4584665a;
+
+CREATE INDEX IF NOT EXISTS idx_f47f707a4584665a
+    ON public.oro_price_product USING btree
+    (product_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_f47f707a5688ded7
+
+-- DROP INDEX IF EXISTS public.idx_f47f707a5688ded7;
+
+CREATE INDEX IF NOT EXISTS idx_f47f707a5688ded7
+    ON public.oro_price_product USING btree
+    (price_list_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_f47f707afbd3d1c2
+
+-- DROP INDEX IF EXISTS public.idx_f47f707afbd3d1c2;
+
+CREATE INDEX IF NOT EXISTS idx_f47f707afbd3d1c2
+    ON public.oro_price_product USING btree
+    (unit_code COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_price_version_idx
+
+-- DROP INDEX IF EXISTS public.oro_price_version_idx;
+
+CREATE INDEX IF NOT EXISTS oro_price_version_idx
+    ON public.oro_price_product USING btree
+    (price_list_id ASC NULLS LAST, version ASC NULLS LAST, product_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_pricing_price_list_uidx
+
+-- DROP INDEX IF EXISTS public.oro_pricing_price_list_uidx;
+
+CREATE UNIQUE INDEX IF NOT EXISTS oro_pricing_price_list_uidx
+    ON public.oro_price_product USING btree
+    (product_id ASC NULLS LAST, price_list_id ASC NULLS LAST, quantity ASC NULLS LAST, unit_code COLLATE pg_catalog."default" ASC NULLS LAST, currency COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;

@@ -1,0 +1,105 @@
+-- Table: public.oro_payment_transaction
+
+-- DROP TABLE IF EXISTS public.oro_payment_transaction;
+
+CREATE TABLE IF NOT EXISTS public.oro_payment_transaction
+(
+    id integer NOT NULL DEFAULT nextval('oro_payment_transaction_id_seq'::regclass),
+    source_payment_transaction integer,
+    frontend_owner_id integer,
+    organization_id integer,
+    user_owner_id integer,
+    entity_class character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    entity_identifier integer NOT NULL,
+    access_identifier character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    access_token character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    payment_method character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    action character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    reference character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    amount character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    currency character varying(3) COLLATE pg_catalog."default" NOT NULL,
+    active boolean NOT NULL,
+    successful boolean NOT NULL,
+    request text COLLATE pg_catalog."default",
+    response text COLLATE pg_catalog."default",
+    transaction_options text COLLATE pg_catalog."default",
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    CONSTRAINT oro_payment_transaction_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_1ed758d032c8a3de FOREIGN KEY (organization_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1ed758d0938631a3 FOREIGN KEY (source_payment_transaction)
+        REFERENCES public.oro_payment_transaction (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_1ed758d09eb185f9 FOREIGN KEY (user_owner_id)
+        REFERENCES public.oro_user (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_1ed758d0b2efff1f FOREIGN KEY (frontend_owner_id)
+        REFERENCES public.oro_customer_user (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_payment_transaction
+    OWNER to oro_user;
+
+COMMENT ON COLUMN public.oro_payment_transaction.request
+    IS '(DC2Type:secure_array)(DC2Type:secure_array)';
+
+COMMENT ON COLUMN public.oro_payment_transaction.response
+    IS '(DC2Type:secure_array)(DC2Type:secure_array)';
+
+COMMENT ON COLUMN public.oro_payment_transaction.transaction_options
+    IS '(DC2Type:secure_array)(DC2Type:secure_array)';
+
+COMMENT ON COLUMN public.oro_payment_transaction.created_at
+    IS '(DC2Type:datetime)';
+
+COMMENT ON COLUMN public.oro_payment_transaction.updated_at
+    IS '(DC2Type:datetime)';
+-- Index: idx_1ed758d032c8a3de
+
+-- DROP INDEX IF EXISTS public.idx_1ed758d032c8a3de;
+
+CREATE INDEX IF NOT EXISTS idx_1ed758d032c8a3de
+    ON public.oro_payment_transaction USING btree
+    (organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1ed758d0938631a3
+
+-- DROP INDEX IF EXISTS public.idx_1ed758d0938631a3;
+
+CREATE INDEX IF NOT EXISTS idx_1ed758d0938631a3
+    ON public.oro_payment_transaction USING btree
+    (source_payment_transaction ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1ed758d09eb185f9
+
+-- DROP INDEX IF EXISTS public.idx_1ed758d09eb185f9;
+
+CREATE INDEX IF NOT EXISTS idx_1ed758d09eb185f9
+    ON public.oro_payment_transaction USING btree
+    (user_owner_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_1ed758d0b2efff1f
+
+-- DROP INDEX IF EXISTS public.idx_1ed758d0b2efff1f;
+
+CREATE INDEX IF NOT EXISTS idx_1ed758d0b2efff1f
+    ON public.oro_payment_transaction USING btree
+    (frontend_owner_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_pay_trans_access_uidx
+
+-- DROP INDEX IF EXISTS public.oro_pay_trans_access_uidx;
+
+CREATE UNIQUE INDEX IF NOT EXISTS oro_pay_trans_access_uidx
+    ON public.oro_payment_transaction USING btree
+    (access_identifier COLLATE pg_catalog."default" ASC NULLS LAST, access_token COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;

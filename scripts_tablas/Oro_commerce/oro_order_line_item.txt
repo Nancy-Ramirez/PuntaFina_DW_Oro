@@ -1,0 +1,95 @@
+-- Table: public.oro_order_line_item
+
+-- DROP TABLE IF EXISTS public.oro_order_line_item;
+
+CREATE TABLE IF NOT EXISTS public.oro_order_line_item
+(
+    id integer NOT NULL DEFAULT nextval('oro_order_line_item_id_seq'::regclass),
+    product_unit_id character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    product_id integer,
+    parent_product_id integer,
+    order_id integer,
+    product_sku character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    product_name character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    product_variant_fields text COLLATE pg_catalog."default",
+    free_form_product character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    quantity double precision,
+    product_unit_code character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    value numeric(19,4) DEFAULT NULL::numeric,
+    currency character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    price_type integer NOT NULL,
+    ship_by date,
+    from_external_source boolean NOT NULL,
+    comment text COLLATE pg_catalog."default",
+    shipping_method character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    shipping_method_type character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    shipping_estimate_amount numeric(19,4) DEFAULT NULL::numeric,
+    checksum character varying(40) COLLATE pg_catalog."default" NOT NULL DEFAULT ''::character varying,
+    serialized_data jsonb,
+    CONSTRAINT oro_order_line_item_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_32715f0b29646bbd FOREIGN KEY (product_unit_id)
+        REFERENCES public.oro_product_unit (code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_32715f0b2c7e20a FOREIGN KEY (parent_product_id)
+        REFERENCES public.oro_product (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_32715f0b4584665a FOREIGN KEY (product_id)
+        REFERENCES public.oro_product (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_32715f0b8d9f6d38 FOREIGN KEY (order_id)
+        REFERENCES public.oro_order (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_order_line_item
+    OWNER to oro_user;
+
+COMMENT ON COLUMN public.oro_order_line_item.product_variant_fields
+    IS '(DC2Type:array)(DC2Type:array)';
+
+COMMENT ON COLUMN public.oro_order_line_item.value
+    IS '(DC2Type:money)(DC2Type:money)';
+
+COMMENT ON COLUMN public.oro_order_line_item.ship_by
+    IS '(DC2Type:date)';
+
+COMMENT ON COLUMN public.oro_order_line_item.shipping_estimate_amount
+    IS '(DC2Type:money)(DC2Type:money)';
+-- Index: idx_32715f0b2c7e20a
+
+-- DROP INDEX IF EXISTS public.idx_32715f0b2c7e20a;
+
+CREATE INDEX IF NOT EXISTS idx_32715f0b2c7e20a
+    ON public.oro_order_line_item USING btree
+    (parent_product_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_de91360929646bbd
+
+-- DROP INDEX IF EXISTS public.idx_de91360929646bbd;
+
+CREATE INDEX IF NOT EXISTS idx_de91360929646bbd
+    ON public.oro_order_line_item USING btree
+    (product_unit_id COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_de9136094584665a
+
+-- DROP INDEX IF EXISTS public.idx_de9136094584665a;
+
+CREATE INDEX IF NOT EXISTS idx_de9136094584665a
+    ON public.oro_order_line_item USING btree
+    (product_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_de9136098d9f6d38
+
+-- DROP INDEX IF EXISTS public.idx_de9136098d9f6d38;
+
+CREATE INDEX IF NOT EXISTS idx_de9136098d9f6d38
+    ON public.oro_order_line_item USING btree
+    (order_id ASC NULLS LAST)
+    TABLESPACE pg_default;
