@@ -1,0 +1,55 @@
+-- Table: public.oro_address
+
+-- DROP TABLE IF EXISTS public.oro_address;
+
+CREATE TABLE IF NOT EXISTS public.oro_address
+(
+    id integer NOT NULL DEFAULT nextval('oro_address_id_seq'::regclass),
+    country_code character varying(2) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    region_code character varying(16) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    label character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    street character varying(500) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    street2 character varying(500) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    city character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    postal_code character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    organization character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    region_text character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    name_prefix character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    first_name character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    middle_name character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    last_name character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    name_suffix character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    created timestamp(0) without time zone NOT NULL,
+    updated timestamp(0) without time zone NOT NULL,
+    serialized_data jsonb,
+    CONSTRAINT oro_address_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_oro_address_country_code FOREIGN KEY (country_code)
+        REFERENCES public.oro_dictionary_country (iso2_code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_oro_address_region_code FOREIGN KEY (region_code)
+        REFERENCES public.oro_dictionary_region (combined_code) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_address
+    OWNER to oro_user;
+-- Index: idx_c5e99957aeb327af
+
+-- DROP INDEX IF EXISTS public.idx_c5e99957aeb327af;
+
+CREATE INDEX IF NOT EXISTS idx_c5e99957aeb327af
+    ON public.oro_address USING btree
+    (region_code COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_c5e99957f026bb7c
+
+-- DROP INDEX IF EXISTS public.idx_c5e99957f026bb7c;
+
+CREATE INDEX IF NOT EXISTS idx_c5e99957f026bb7c
+    ON public.oro_address USING btree
+    (country_code COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;

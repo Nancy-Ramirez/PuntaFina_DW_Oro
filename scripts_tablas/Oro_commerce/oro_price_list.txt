@@ -1,0 +1,41 @@
+-- Table: public.oro_price_list
+
+-- DROP TABLE IF EXISTS public.oro_price_list;
+
+CREATE TABLE IF NOT EXISTS public.oro_price_list
+(
+    id integer NOT NULL DEFAULT nextval('oro_price_list_id_seq'::regclass),
+    organization_id integer,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    active boolean NOT NULL DEFAULT true,
+    actual boolean NOT NULL DEFAULT true,
+    product_assignment_rule text COLLATE pg_catalog."default",
+    contain_schedule boolean NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    serialized_data jsonb,
+    CONSTRAINT oro_price_list_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_baca339832c8a3de FOREIGN KEY (organization_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_price_list
+    OWNER to oro_user;
+
+COMMENT ON COLUMN public.oro_price_list.created_at
+    IS '(DC2Type:datetime)';
+
+COMMENT ON COLUMN public.oro_price_list.updated_at
+    IS '(DC2Type:datetime)';
+-- Index: idx_baca339832c8a3de
+
+-- DROP INDEX IF EXISTS public.idx_baca339832c8a3de;
+
+CREATE INDEX IF NOT EXISTS idx_baca339832c8a3de
+    ON public.oro_price_list USING btree
+    (organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;

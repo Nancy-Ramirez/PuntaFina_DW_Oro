@@ -1,0 +1,55 @@
+-- Table: public.oro_inventory_level
+
+-- DROP TABLE IF EXISTS public.oro_inventory_level;
+
+CREATE TABLE IF NOT EXISTS public.oro_inventory_level
+(
+    id integer NOT NULL DEFAULT nextval('oro_inventory_level_id_seq'::regclass),
+    product_id integer NOT NULL,
+    product_unit_precision_id integer NOT NULL,
+    organization_id integer,
+    quantity numeric(20,10) NOT NULL,
+    serialized_data jsonb,
+    CONSTRAINT oro_inventory_level_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_5cd6952732c8a3de FOREIGN KEY (organization_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_5cd695274584665a FOREIGN KEY (product_id)
+        REFERENCES public.oro_product (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_5cd69527a9a65d02 FOREIGN KEY (product_unit_precision_id)
+        REFERENCES public.oro_product_unit_precision (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_inventory_level
+    OWNER to oro_user;
+-- Index: idx_5cd6952732c8a3de
+
+-- DROP INDEX IF EXISTS public.idx_5cd6952732c8a3de;
+
+CREATE INDEX IF NOT EXISTS idx_5cd6952732c8a3de
+    ON public.oro_inventory_level USING btree
+    (organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_5cd695274584665a
+
+-- DROP INDEX IF EXISTS public.idx_5cd695274584665a;
+
+CREATE INDEX IF NOT EXISTS idx_5cd695274584665a
+    ON public.oro_inventory_level USING btree
+    (product_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_5cd69527a9a65d02
+
+-- DROP INDEX IF EXISTS public.idx_5cd69527a9a65d02;
+
+CREATE INDEX IF NOT EXISTS idx_5cd69527a9a65d02
+    ON public.oro_inventory_level USING btree
+    (product_unit_precision_id ASC NULLS LAST)
+    TABLESPACE pg_default;

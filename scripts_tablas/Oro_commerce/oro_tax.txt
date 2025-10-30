@@ -1,0 +1,30 @@
+-- Table: public.oro_tax
+
+-- DROP TABLE IF EXISTS public.oro_tax;
+
+CREATE TABLE IF NOT EXISTS public.oro_tax
+(
+    id integer NOT NULL DEFAULT nextval('oro_tax_id_seq'::regclass),
+    code character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    description text COLLATE pg_catalog."default",
+    rate double precision NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    CONSTRAINT oro_tax_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_tax
+    OWNER to oro_user;
+
+COMMENT ON COLUMN public.oro_tax.rate
+    IS '(DC2Type:percent)(DC2Type:percent)';
+-- Index: uniq_e132b24377153098
+
+-- DROP INDEX IF EXISTS public.uniq_e132b24377153098;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uniq_e132b24377153098
+    ON public.oro_tax USING btree
+    (code COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;

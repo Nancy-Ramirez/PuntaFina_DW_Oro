@@ -1,0 +1,15 @@
+-- Table: public.oro_product_unit
+
+-- DROP TABLE IF EXISTS public.oro_product_unit;
+
+CREATE TABLE IF NOT EXISTS public.oro_product_unit
+(
+    code character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    default_precision integer NOT NULL,
+    CONSTRAINT oro_product_unit_pkey PRIMARY KEY (code)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_product_unit
+    OWNER to oro_user;

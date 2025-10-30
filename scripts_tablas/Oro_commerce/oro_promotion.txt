@@ -1,0 +1,83 @@
+-- Table: public.oro_promotion
+
+-- DROP TABLE IF EXISTS public.oro_promotion;
+
+CREATE TABLE IF NOT EXISTS public.oro_promotion
+(
+    id integer NOT NULL DEFAULT nextval('oro_promotion_id_seq'::regclass),
+    organization_id integer,
+    discount_config_id integer NOT NULL,
+    rule_id integer NOT NULL,
+    products_segment_id integer NOT NULL,
+    user_owner_id integer,
+    use_coupons boolean NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    serialized_data jsonb,
+    CONSTRAINT oro_promotion_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_42a180c632c8a3de FOREIGN KEY (organization_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_42a180c644018e7e FOREIGN KEY (discount_config_id)
+        REFERENCES public.oro_promotion_discount_config (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_42a180c697692b3 FOREIGN KEY (products_segment_id)
+        REFERENCES public.oro_segment (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_oro_promotion_rule_id FOREIGN KEY (rule_id)
+        REFERENCES public.oro_rule (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_oro_promotion_user_owner_id FOREIGN KEY (user_owner_id)
+        REFERENCES public.oro_user (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_promotion
+    OWNER to oro_user;
+-- Index: idx_42a180c632c8a3de
+
+-- DROP INDEX IF EXISTS public.idx_42a180c632c8a3de;
+
+CREATE INDEX IF NOT EXISTS idx_42a180c632c8a3de
+    ON public.oro_promotion USING btree
+    (organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_42a180c6744e0351
+
+-- DROP INDEX IF EXISTS public.idx_42a180c6744e0351;
+
+CREATE INDEX IF NOT EXISTS idx_42a180c6744e0351
+    ON public.oro_promotion USING btree
+    (rule_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_42a180c697692b3
+
+-- DROP INDEX IF EXISTS public.idx_42a180c697692b3;
+
+CREATE INDEX IF NOT EXISTS idx_42a180c697692b3
+    ON public.oro_promotion USING btree
+    (products_segment_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_42a180c69eb185f9
+
+-- DROP INDEX IF EXISTS public.idx_42a180c69eb185f9;
+
+CREATE INDEX IF NOT EXISTS idx_42a180c69eb185f9
+    ON public.oro_promotion USING btree
+    (user_owner_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: uniq_42a180c644018e7e
+
+-- DROP INDEX IF EXISTS public.uniq_42a180c644018e7e;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uniq_42a180c644018e7e
+    ON public.oro_promotion USING btree
+    (discount_config_id ASC NULLS LAST)
+    TABLESPACE pg_default;
