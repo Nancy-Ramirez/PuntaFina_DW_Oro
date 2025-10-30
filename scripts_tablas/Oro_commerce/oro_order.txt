@@ -1,0 +1,267 @@
+-- Table: public.oro_order
+
+-- DROP TABLE IF EXISTS public.oro_order;
+
+CREATE TABLE IF NOT EXISTS public.oro_order
+(
+    id integer NOT NULL DEFAULT nextval('oro_order_id_seq'::regclass),
+    organization_id integer,
+    user_owner_id integer,
+    shipping_address_id integer,
+    billing_address_id integer,
+    website_id integer,
+    parent_id integer,
+    customer_id integer,
+    customer_user_id integer,
+    internal_status_id character varying(32) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    payment_term_7c4f1e8e_id integer,
+    uuid uuid NOT NULL,
+    identifier character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    po_number character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    customer_notes text COLLATE pg_catalog."default",
+    ship_until date,
+    currency character varying(3) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    shipping_method character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    shipping_method_type character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    subtotal_value numeric(19,4) DEFAULT NULL::numeric,
+    subtotal_currency character varying(3) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    base_subtotal_value numeric(19,4) DEFAULT NULL::numeric,
+    subtotal_with_discounts numeric(19,4) DEFAULT NULL::numeric,
+    total_value numeric(19,4) DEFAULT NULL::numeric,
+    total_currency character varying(3) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    base_total_value numeric(19,4) DEFAULT NULL::numeric,
+    estimated_shipping_cost_amount numeric(19,4) DEFAULT NULL::numeric,
+    override_shipping_cost_amount numeric(19,4) DEFAULT NULL::numeric,
+    total_discounts_amount numeric(19,4) DEFAULT NULL::numeric,
+    source_entity_class character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    source_entity_id integer,
+    source_entity_identifier character varying(255) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
+    disablepromotions boolean,
+    serialized_data jsonb,
+    ac_last_contact_date timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    ac_last_contact_date_in timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    ac_last_contact_date_out timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    ac_contact_count integer,
+    ac_contact_count_in integer,
+    ac_contact_count_out integer,
+    CONSTRAINT oro_order_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_388b2e9d4d4cff2b FOREIGN KEY (shipping_address_id)
+        REFERENCES public.oro_order_address (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_388b2e9d79d0c0e4 FOREIGN KEY (billing_address_id)
+        REFERENCES public.oro_order_address (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_388b2e9dd9e03cfd FOREIGN KEY (payment_term_7c4f1e8e_id)
+        REFERENCES public.oro_payment_term (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_388b2e9de330f8d6 FOREIGN KEY (internal_status_id)
+        REFERENCES public.oro_enum_order_internal_status (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_order_customer_id FOREIGN KEY (customer_id)
+        REFERENCES public.oro_customer (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_order_customer_user_id FOREIGN KEY (customer_user_id)
+        REFERENCES public.oro_customer_user (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_order_organization_id FOREIGN KEY (organization_id)
+        REFERENCES public.oro_organization (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_order_parent_id FOREIGN KEY (parent_id)
+        REFERENCES public.oro_order (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_oro_order_user_owner_id FOREIGN KEY (user_owner_id)
+        REFERENCES public.oro_user (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT fk_oro_order_website_id FOREIGN KEY (website_id)
+        REFERENCES public.oro_website (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.oro_order
+    OWNER to oro_user;
+
+COMMENT ON COLUMN public.oro_order.created_at
+    IS '(DC2Type:datetime)';
+
+COMMENT ON COLUMN public.oro_order.updated_at
+    IS '(DC2Type:datetime)';
+
+COMMENT ON COLUMN public.oro_order.subtotal_value
+    IS '(DC2Type:money_value)(DC2Type:money_value)';
+
+COMMENT ON COLUMN public.oro_order.subtotal_currency
+    IS '(DC2Type:currency)(DC2Type:currency)';
+
+COMMENT ON COLUMN public.oro_order.base_subtotal_value
+    IS '(DC2Type:money)(DC2Type:money)';
+
+COMMENT ON COLUMN public.oro_order.subtotal_with_discounts
+    IS '(DC2Type:money)(DC2Type:money)';
+
+COMMENT ON COLUMN public.oro_order.total_value
+    IS '(DC2Type:money_value)(DC2Type:money_value)';
+
+COMMENT ON COLUMN public.oro_order.total_currency
+    IS '(DC2Type:currency)(DC2Type:currency)';
+
+COMMENT ON COLUMN public.oro_order.base_total_value
+    IS '(DC2Type:money)(DC2Type:money)';
+
+COMMENT ON COLUMN public.oro_order.estimated_shipping_cost_amount
+    IS '(DC2Type:money)(DC2Type:money)';
+
+COMMENT ON COLUMN public.oro_order.override_shipping_cost_amount
+    IS '(DC2Type:money)(DC2Type:money)';
+
+COMMENT ON COLUMN public.oro_order.total_discounts_amount
+    IS '(DC2Type:money)(DC2Type:money)';
+-- Index: idx_388b2e9d18f45c82
+
+-- DROP INDEX IF EXISTS public.idx_388b2e9d18f45c82;
+
+CREATE INDEX IF NOT EXISTS idx_388b2e9d18f45c82
+    ON public.oro_order USING btree
+    (website_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_388b2e9d32c8a3de
+
+-- DROP INDEX IF EXISTS public.idx_388b2e9d32c8a3de;
+
+CREATE INDEX IF NOT EXISTS idx_388b2e9d32c8a3de
+    ON public.oro_order USING btree
+    (organization_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_388b2e9d727aca70
+
+-- DROP INDEX IF EXISTS public.idx_388b2e9d727aca70;
+
+CREATE INDEX IF NOT EXISTS idx_388b2e9d727aca70
+    ON public.oro_order USING btree
+    (parent_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_388b2e9d9395c3f3
+
+-- DROP INDEX IF EXISTS public.idx_388b2e9d9395c3f3;
+
+CREATE INDEX IF NOT EXISTS idx_388b2e9d9395c3f3
+    ON public.oro_order USING btree
+    (customer_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_388b2e9d9eb185f9
+
+-- DROP INDEX IF EXISTS public.idx_388b2e9d9eb185f9;
+
+CREATE INDEX IF NOT EXISTS idx_388b2e9d9eb185f9
+    ON public.oro_order USING btree
+    (user_owner_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_388b2e9dbbb3772b
+
+-- DROP INDEX IF EXISTS public.idx_388b2e9dbbb3772b;
+
+CREATE INDEX IF NOT EXISTS idx_388b2e9dbbb3772b
+    ON public.oro_order USING btree
+    (customer_user_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_388b2e9dd9e03cfd
+
+-- DROP INDEX IF EXISTS public.idx_388b2e9dd9e03cfd;
+
+CREATE INDEX IF NOT EXISTS idx_388b2e9dd9e03cfd
+    ON public.oro_order USING btree
+    (payment_term_7c4f1e8e_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_388b2e9de330f8d6
+
+-- DROP INDEX IF EXISTS public.idx_388b2e9de330f8d6;
+
+CREATE INDEX IF NOT EXISTS idx_388b2e9de330f8d6
+    ON public.oro_order USING btree
+    (internal_status_id COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_order_identifier_ci
+
+-- DROP INDEX IF EXISTS public.idx_order_identifier_ci;
+
+CREATE INDEX IF NOT EXISTS idx_order_identifier_ci
+    ON public.oro_order USING btree
+    (lower(identifier::text) COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: idx_order_po_number_ci
+
+-- DROP INDEX IF EXISTS public.idx_order_po_number_ci;
+
+CREATE INDEX IF NOT EXISTS idx_order_po_number_ci
+    ON public.oro_order USING btree
+    (lower(po_number::text) COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_idx_34e8bc9cf73f3db
+
+-- DROP INDEX IF EXISTS public.oro_idx_34e8bc9cf73f3db;
+
+CREATE INDEX IF NOT EXISTS oro_idx_34e8bc9cf73f3db
+    ON public.oro_order USING btree
+    (disablepromotions ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_order_created_at_index
+
+-- DROP INDEX IF EXISTS public.oro_order_created_at_index;
+
+CREATE INDEX IF NOT EXISTS oro_order_created_at_index
+    ON public.oro_order USING btree
+    (created_at ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: oro_order_uuid
+
+-- DROP INDEX IF EXISTS public.oro_order_uuid;
+
+CREATE INDEX IF NOT EXISTS oro_order_uuid
+    ON public.oro_order USING btree
+    (uuid ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: uniq_388b2e9dd17f50a6
+
+-- DROP INDEX IF EXISTS public.uniq_388b2e9dd17f50a6;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uniq_388b2e9dd17f50a6
+    ON public.oro_order USING btree
+    (uuid ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: uniq_c036ff904d4cff2b
+
+-- DROP INDEX IF EXISTS public.uniq_c036ff904d4cff2b;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uniq_c036ff904d4cff2b
+    ON public.oro_order USING btree
+    (shipping_address_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: uniq_c036ff9079d0c0e4
+
+-- DROP INDEX IF EXISTS public.uniq_c036ff9079d0c0e4;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uniq_c036ff9079d0c0e4
+    ON public.oro_order USING btree
+    (billing_address_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+-- Index: uniq_oro_order_identifier
+
+-- DROP INDEX IF EXISTS public.uniq_oro_order_identifier;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uniq_oro_order_identifier
+    ON public.oro_order USING btree
+    (identifier COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;
