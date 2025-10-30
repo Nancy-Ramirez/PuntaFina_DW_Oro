@@ -1,0 +1,12 @@
+# Configuración simple del proyecto
+exportar_parquet: true
+exportar_csv: false
+salida_parquet: "data/outputs/parquet"
+salida_csv: "data/outputs/csv"
+logs_dir: "logs"
+
+# Opcional: marcar incremental por tabla (placeholder)
+incremental:
+  orders: true
+  order_lines: true
+  payments: true

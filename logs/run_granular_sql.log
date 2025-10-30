@@ -1,0 +1,285 @@
+2025-10-30 02:41:24,724 | INFO | Base de datos destino: postgres@localhost:5432/oro_commerce
+2025-10-30 02:41:24,725 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 03:04:56,921 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 03:04:56,921 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 03:04:56,973 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 03:04:56,989 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:56,992 | ERROR |    ROLLBACK por error en oro_address_granular.sql: un comentario /* está inconcluso en o cerca de «/* Etiqueta de región preferida: nombre por FK»
+LINE 14:     /* Etiqueta de región preferida: nombre por FK
+             ^
+
+2025-10-30 03:04:56,993 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 03:04:57,005 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:04:57,009 | ERROR |    ROLLBACK por error en oro_catalog_category_granular.sql: permiso denegado al esquema public
+
+2025-10-30 03:04:57,009 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 03:04:57,022 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:57,023 | ERROR |    ROLLBACK por error en oro_customer_granular.sql: debe ser dueño de la vista vw_oro_customer_granular
+
+2025-10-30 03:04:57,023 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 03:04:57,038 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:57,040 | ERROR |    ROLLBACK por error en oro_customer_user_granular.sql: debe ser dueño de la vista oro_customer_user_granular
+
+2025-10-30 03:04:57,040 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 03:04:57,057 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:04:57,059 | ERROR |    ROLLBACK por error en oro_inventory_level_granular.sql: permiso denegado al esquema public
+
+2025-10-30 03:04:57,060 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 03:04:57,082 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:57,084 | ERROR |    ROLLBACK por error en oro_order_granular.sql: debe ser dueño de la vista oro_order_granular
+
+2025-10-30 03:04:57,085 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 03:04:57,108 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:57,113 | ERROR |    ROLLBACK por error en oro_order_line_item_granular.sql: debe ser dueño de la vista oro_order_line_item_granular
+
+2025-10-30 03:04:57,114 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 03:04:57,131 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:04:57,132 | ERROR |    ROLLBACK por error en oro_payment_status_granular.sql: permiso denegado al esquema public
+
+2025-10-30 03:04:57,133 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 03:04:57,157 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:57,159 | ERROR |    ROLLBACK por error en oro_payment_transaction_granular.sql: debe ser dueño de la vista oro_payment_transaction_granular
+
+2025-10-30 03:04:57,159 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 03:04:57,179 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:04:57,181 | ERROR |    ROLLBACK por error en oro_price_list_granular.sql: permiso denegado al esquema public
+
+2025-10-30 03:04:57,182 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 03:04:57,202 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:57,204 | ERROR |    ROLLBACK por error en oro_price_product_granular.sql: debe ser dueño de la vista oro_price_product_granular
+
+2025-10-30 03:04:57,208 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 03:04:57,234 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:04:57,239 | ERROR |    ROLLBACK por error en oro_product_granular.sql: debe ser dueño de la vista vw_oro_product_granular
+
+2025-10-30 03:04:57,240 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 03:04:57,256 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:04:57,260 | ERROR |    ROLLBACK por error en oro_product_unit_granular.sql: permiso denegado al esquema public
+
+2025-10-30 03:04:57,260 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 03:04:57,287 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:57,332 | ERROR |    ROLLBACK por error en oro_promotion_applied_discount_granular.sql: debe ser dueño de la vista oro_promotion_applied_discount_granular
+
+2025-10-30 03:04:57,337 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 03:04:57,358 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:04:57,370 | ERROR |    ROLLBACK por error en oro_promotion_granular.sql: permiso denegado al esquema public
+
+2025-10-30 03:04:57,371 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 03:04:57,391 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:57,393 | ERROR |    ROLLBACK por error en oro_shipping_product_opts_granular.sql: debe ser dueño de la vista oro_shipping_product_opts_granular
+
+2025-10-30 03:04:57,393 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 03:04:57,409 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:04:57,411 | ERROR |    ROLLBACK por error en oro_tax_granular.sql: permiso denegado al esquema public
+
+2025-10-30 03:04:57,411 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 03:04:57,430 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:57,431 | ERROR |    ROLLBACK por error en oro_user_granular.sql: debe ser dueño de la vista oro_user_granular
+
+2025-10-30 03:04:57,432 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 03:04:57,455 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:04:57,456 | ERROR |    ROLLBACK por error en oro_website_granular.sql: debe ser dueño de la vista oro_website_granular
+
+2025-10-30 03:04:57,457 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 03:04:57,472 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:04:57,478 | ERROR |    ROLLBACK por error en orocrm_channel_granular.sql: permiso denegado al esquema public
+
+2025-10-30 03:04:57,479 | INFO | Archivos ejecutados con éxito: 0/20
+2025-10-30 03:25:27,497 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 03:25:27,497 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 03:25:27,497 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 03:25:27,650 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 03:25:27,652 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:25:27,662 | INFO |    OK sentencia 1/2
+2025-10-30 03:25:27,671 | INFO |    OK sentencia 2/2
+2025-10-30 03:25:27,673 | INFO |    COMMIT (0.02s)
+2025-10-30 03:25:27,673 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 03:25:27,674 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:25:27,678 | INFO |    OK sentencia 1/2
+2025-10-30 03:25:27,693 | INFO |    OK sentencia 2/2
+2025-10-30 03:25:27,694 | INFO |    COMMIT (0.02s)
+2025-10-30 03:25:27,694 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 03:25:27,707 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,710 | INFO |    OK sentencia 1/3
+2025-10-30 03:25:27,722 | INFO |    OK sentencia 2/3
+2025-10-30 03:25:27,780 | INFO |    OK sentencia 3/3
+2025-10-30 03:25:27,781 | INFO |    COMMIT (0.09s)
+2025-10-30 03:25:27,781 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 03:25:27,782 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,782 | ERROR |    ROLLBACK por error en oro_customer_user_granular.sql: debe ser dueño de la vista oro_customer_user_granular
+
+2025-10-30 03:25:27,783 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 03:25:27,783 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:25:27,786 | INFO |    OK sentencia 1/2
+2025-10-30 03:25:27,813 | INFO |    OK sentencia 2/2
+2025-10-30 03:25:27,814 | INFO |    COMMIT (0.03s)
+2025-10-30 03:25:27,814 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 03:25:27,815 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,817 | ERROR |    ROLLBACK por error en oro_order_granular.sql: debe ser dueño de la vista oro_order_granular
+
+2025-10-30 03:25:27,817 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 03:25:27,818 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,820 | ERROR |    ROLLBACK por error en oro_order_line_item_granular.sql: debe ser dueño de la vista oro_order_line_item_granular
+
+2025-10-30 03:25:27,820 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 03:25:27,821 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:25:27,823 | INFO |    OK sentencia 1/2
+2025-10-30 03:25:27,835 | INFO |    OK sentencia 2/2
+2025-10-30 03:25:27,835 | INFO |    COMMIT (0.02s)
+2025-10-30 03:25:27,836 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 03:25:27,836 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,837 | ERROR |    ROLLBACK por error en oro_payment_transaction_granular.sql: debe ser dueño de la vista oro_payment_transaction_granular
+
+2025-10-30 03:25:27,838 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 03:25:27,838 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:25:27,841 | INFO |    OK sentencia 1/2
+2025-10-30 03:25:27,843 | INFO |    OK sentencia 2/2
+2025-10-30 03:25:27,843 | INFO |    COMMIT (0.01s)
+2025-10-30 03:25:27,844 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 03:25:27,844 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,845 | ERROR |    ROLLBACK por error en oro_price_product_granular.sql: debe ser dueño de la vista oro_price_product_granular
+
+2025-10-30 03:25:27,846 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 03:25:27,860 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,861 | INFO |    OK sentencia 1/3
+2025-10-30 03:25:27,869 | INFO |    OK sentencia 2/3
+2025-10-30 03:25:27,869 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 03:25:27,870 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 03:25:27,870 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:25:27,872 | INFO |    OK sentencia 1/2
+2025-10-30 03:25:27,874 | INFO |    OK sentencia 2/2
+2025-10-30 03:25:27,875 | INFO |    COMMIT (0.00s)
+2025-10-30 03:25:27,875 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 03:25:27,876 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,877 | ERROR |    ROLLBACK por error en oro_promotion_applied_discount_granular.sql: debe ser dueño de la vista oro_promotion_applied_discount_granular
+
+2025-10-30 03:25:27,877 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 03:25:27,878 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:25:27,881 | INFO |    OK sentencia 1/2
+2025-10-30 03:25:27,887 | INFO |    OK sentencia 2/2
+2025-10-30 03:25:27,888 | INFO |    COMMIT (0.01s)
+2025-10-30 03:25:27,888 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 03:25:27,889 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,890 | ERROR |    ROLLBACK por error en oro_shipping_product_opts_granular.sql: debe ser dueño de la vista oro_shipping_product_opts_granular
+
+2025-10-30 03:25:27,890 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 03:25:27,891 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:25:27,892 | INFO |    OK sentencia 1/2
+2025-10-30 03:25:27,895 | INFO |    OK sentencia 2/2
+2025-10-30 03:25:27,896 | INFO |    COMMIT (0.01s)
+2025-10-30 03:25:27,896 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 03:25:27,897 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,898 | ERROR |    ROLLBACK por error en oro_user_granular.sql: debe ser dueño de la vista oro_user_granular
+
+2025-10-30 03:25:27,899 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 03:25:27,899 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:25:27,901 | ERROR |    ROLLBACK por error en oro_website_granular.sql: debe ser dueño de la vista oro_website_granular
+
+2025-10-30 03:25:27,901 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 03:25:27,902 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:25:27,905 | INFO |    OK sentencia 1/2
+2025-10-30 03:25:27,917 | INFO |    OK sentencia 2/2
+2025-10-30 03:25:27,918 | INFO |    COMMIT (0.02s)
+2025-10-30 03:25:27,918 | INFO | Archivos ejecutados con éxito: 10/20
+2025-10-30 03:27:13,147 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 03:27:13,147 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 03:27:13,148 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 03:27:13,211 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 03:27:13,212 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:27:13,222 | INFO |    OK sentencia 1/2
+2025-10-30 03:27:13,230 | INFO |    OK sentencia 2/2
+2025-10-30 03:27:13,231 | INFO |    COMMIT (0.02s)
+2025-10-30 03:27:13,231 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 03:27:13,232 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:27:13,236 | INFO |    OK sentencia 1/2
+2025-10-30 03:27:13,250 | INFO |    OK sentencia 2/2
+2025-10-30 03:27:13,251 | INFO |    COMMIT (0.02s)
+2025-10-30 03:27:13,252 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 03:27:13,253 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,262 | INFO |    OK sentencia 1/3
+2025-10-30 03:27:13,274 | INFO |    OK sentencia 2/3
+2025-10-30 03:27:13,332 | INFO |    OK sentencia 3/3
+2025-10-30 03:27:13,334 | INFO |    COMMIT (0.08s)
+2025-10-30 03:27:13,334 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 03:27:13,335 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,336 | ERROR |    ROLLBACK por error en oro_customer_user_granular.sql: debe ser dueño de la vista oro_customer_user_granular
+
+2025-10-30 03:27:13,337 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 03:27:13,337 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:27:13,341 | INFO |    OK sentencia 1/2
+2025-10-30 03:27:13,387 | INFO |    OK sentencia 2/2
+2025-10-30 03:27:13,387 | INFO |    COMMIT (0.05s)
+2025-10-30 03:27:13,388 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 03:27:13,388 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,390 | ERROR |    ROLLBACK por error en oro_order_granular.sql: debe ser dueño de la vista oro_order_granular
+
+2025-10-30 03:27:13,390 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 03:27:13,391 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,393 | ERROR |    ROLLBACK por error en oro_order_line_item_granular.sql: debe ser dueño de la vista oro_order_line_item_granular
+
+2025-10-30 03:27:13,393 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 03:27:13,394 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:27:13,397 | INFO |    OK sentencia 1/2
+2025-10-30 03:27:13,411 | INFO |    OK sentencia 2/2
+2025-10-30 03:27:13,412 | INFO |    COMMIT (0.02s)
+2025-10-30 03:27:13,412 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 03:27:13,413 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,414 | ERROR |    ROLLBACK por error en oro_payment_transaction_granular.sql: debe ser dueño de la vista oro_payment_transaction_granular
+
+2025-10-30 03:27:13,414 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 03:27:13,415 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:27:13,417 | INFO |    OK sentencia 1/2
+2025-10-30 03:27:13,420 | INFO |    OK sentencia 2/2
+2025-10-30 03:27:13,421 | INFO |    COMMIT (0.01s)
+2025-10-30 03:27:13,422 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 03:27:13,422 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,424 | ERROR |    ROLLBACK por error en oro_price_product_granular.sql: debe ser dueño de la vista oro_price_product_granular
+
+2025-10-30 03:27:13,424 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 03:27:13,425 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,426 | INFO |    OK sentencia 1/3
+2025-10-30 03:27:13,432 | INFO |    OK sentencia 2/3
+2025-10-30 03:27:13,433 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 03:27:13,433 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 03:27:13,434 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:27:13,435 | INFO |    OK sentencia 1/2
+2025-10-30 03:27:13,436 | INFO |    OK sentencia 2/2
+2025-10-30 03:27:13,437 | INFO |    COMMIT (0.00s)
+2025-10-30 03:27:13,437 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 03:27:13,438 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,438 | ERROR |    ROLLBACK por error en oro_promotion_applied_discount_granular.sql: debe ser dueño de la vista oro_promotion_applied_discount_granular
+
+2025-10-30 03:27:13,439 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 03:27:13,439 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:27:13,442 | INFO |    OK sentencia 1/2
+2025-10-30 03:27:13,448 | INFO |    OK sentencia 2/2
+2025-10-30 03:27:13,449 | INFO |    COMMIT (0.01s)
+2025-10-30 03:27:13,449 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 03:27:13,450 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,451 | ERROR |    ROLLBACK por error en oro_shipping_product_opts_granular.sql: debe ser dueño de la vista oro_shipping_product_opts_granular
+
+2025-10-30 03:27:13,452 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 03:27:13,452 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:27:13,454 | INFO |    OK sentencia 1/2
+2025-10-30 03:27:13,457 | INFO |    OK sentencia 2/2
+2025-10-30 03:27:13,457 | INFO |    COMMIT (0.01s)
+2025-10-30 03:27:13,458 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 03:27:13,458 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,459 | ERROR |    ROLLBACK por error en oro_user_granular.sql: debe ser dueño de la vista oro_user_granular
+
+2025-10-30 03:27:13,459 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 03:27:13,460 | INFO |    Sentencias detectadas: 3
+2025-10-30 03:27:13,461 | ERROR |    ROLLBACK por error en oro_website_granular.sql: debe ser dueño de la vista oro_website_granular
+
+2025-10-30 03:27:13,461 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 03:27:13,462 | INFO |    Sentencias detectadas: 2
+2025-10-30 03:27:13,464 | INFO |    OK sentencia 1/2
+2025-10-30 03:27:13,468 | INFO |    OK sentencia 2/2
+2025-10-30 03:27:13,468 | INFO |    COMMIT (0.01s)
+2025-10-30 03:27:13,469 | INFO | Archivos ejecutados con éxito: 10/20
