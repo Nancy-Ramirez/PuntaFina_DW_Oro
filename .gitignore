@@ -1,0 +1,11 @@
+# Credenciales
+config/.env
+
+# Salidas generadas por el ETL (CSV/Parquet)
+data/outputs/csv/*.csv
+data/outputs/parquet/**
+
+# Estados incrementales y logs
+data/_state/**
+logs/**
+

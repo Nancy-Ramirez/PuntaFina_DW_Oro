@@ -283,3 +283,1694 @@ LINE 1: SELECT * FROM oro_product_granular
 2025-10-30 03:27:13,468 | INFO |    OK sentencia 2/2
 2025-10-30 03:27:13,468 | INFO |    COMMIT (0.01s)
 2025-10-30 03:27:13,469 | INFO | Archivos ejecutados con éxito: 10/20
+2025-10-30 20:51:45,336 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 20:51:45,337 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 20:51:45,337 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 20:51:45,383 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 20:51:45,397 | INFO |    Sentencias detectadas: 2
+2025-10-30 20:51:45,405 | INFO |    OK sentencia 1/2
+2025-10-30 20:51:45,414 | INFO |    OK sentencia 2/2
+2025-10-30 20:51:45,415 | INFO |    COMMIT (0.03s)
+2025-10-30 20:51:45,416 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 20:51:45,425 | INFO |    Sentencias detectadas: 2
+2025-10-30 20:51:45,430 | INFO |    OK sentencia 1/2
+2025-10-30 20:51:45,450 | INFO |    OK sentencia 2/2
+2025-10-30 20:51:45,451 | INFO |    COMMIT (0.04s)
+2025-10-30 20:51:45,451 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 20:51:45,461 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:45,466 | INFO |    OK sentencia 1/3
+2025-10-30 20:51:45,477 | INFO |    OK sentencia 2/3
+2025-10-30 20:51:45,517 | INFO |    OK sentencia 3/3
+2025-10-30 20:51:45,518 | INFO |    COMMIT (0.07s)
+2025-10-30 20:51:45,518 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 20:51:45,529 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:45,531 | ERROR |    ROLLBACK por error en oro_customer_user_granular.sql: debe ser dueño de la vista oro_customer_user_granular
+
+2025-10-30 20:51:45,531 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 20:51:45,545 | INFO |    Sentencias detectadas: 2
+2025-10-30 20:51:45,548 | INFO |    OK sentencia 1/2
+2025-10-30 20:51:45,603 | INFO |    OK sentencia 2/2
+2025-10-30 20:51:45,605 | INFO |    COMMIT (0.07s)
+2025-10-30 20:51:45,606 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 20:51:45,632 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:45,636 | ERROR |    ROLLBACK por error en oro_order_granular.sql: debe ser dueño de la vista oro_order_granular
+
+2025-10-30 20:51:45,636 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 20:51:45,661 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:45,702 | ERROR |    ROLLBACK por error en oro_order_line_item_granular.sql: debe ser dueño de la vista oro_order_line_item_granular
+
+2025-10-30 20:51:45,703 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 20:51:45,723 | INFO |    Sentencias detectadas: 2
+2025-10-30 20:51:45,730 | INFO |    OK sentencia 1/2
+2025-10-30 20:51:45,756 | INFO |    OK sentencia 2/2
+2025-10-30 20:51:45,757 | INFO |    COMMIT (0.05s)
+2025-10-30 20:51:45,759 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 20:51:45,784 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:45,786 | ERROR |    ROLLBACK por error en oro_payment_transaction_granular.sql: debe ser dueño de la vista oro_payment_transaction_granular
+
+2025-10-30 20:51:45,787 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 20:51:45,806 | INFO |    Sentencias detectadas: 2
+2025-10-30 20:51:45,810 | INFO |    OK sentencia 1/2
+2025-10-30 20:51:45,815 | INFO |    OK sentencia 2/2
+2025-10-30 20:51:45,816 | INFO |    COMMIT (0.03s)
+2025-10-30 20:51:45,816 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 20:51:45,836 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:45,838 | ERROR |    ROLLBACK por error en oro_price_product_granular.sql: debe ser dueño de la vista oro_price_product_granular
+
+2025-10-30 20:51:45,838 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 20:51:45,859 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:45,860 | INFO |    OK sentencia 1/3
+2025-10-30 20:51:45,870 | INFO |    OK sentencia 2/3
+2025-10-30 20:51:45,871 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 20:51:45,871 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 20:51:45,887 | INFO |    Sentencias detectadas: 2
+2025-10-30 20:51:45,889 | INFO |    OK sentencia 1/2
+2025-10-30 20:51:45,892 | INFO |    OK sentencia 2/2
+2025-10-30 20:51:45,893 | INFO |    COMMIT (0.02s)
+2025-10-30 20:51:45,894 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 20:51:45,915 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:45,917 | ERROR |    ROLLBACK por error en oro_promotion_applied_discount_granular.sql: debe ser dueño de la vista oro_promotion_applied_discount_granular
+
+2025-10-30 20:51:45,917 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 20:51:45,931 | INFO |    Sentencias detectadas: 2
+2025-10-30 20:51:45,934 | INFO |    OK sentencia 1/2
+2025-10-30 20:51:45,942 | INFO |    OK sentencia 2/2
+2025-10-30 20:51:45,943 | INFO |    COMMIT (0.03s)
+2025-10-30 20:51:45,943 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 20:51:45,955 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:45,956 | ERROR |    ROLLBACK por error en oro_shipping_product_opts_granular.sql: debe ser dueño de la vista oro_shipping_product_opts_granular
+
+2025-10-30 20:51:45,957 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 20:51:45,966 | INFO |    Sentencias detectadas: 2
+2025-10-30 20:51:45,968 | INFO |    OK sentencia 1/2
+2025-10-30 20:51:45,972 | INFO |    OK sentencia 2/2
+2025-10-30 20:51:45,973 | INFO |    COMMIT (0.02s)
+2025-10-30 20:51:45,973 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 20:51:45,987 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:45,988 | ERROR |    ROLLBACK por error en oro_user_granular.sql: debe ser dueño de la vista oro_user_granular
+
+2025-10-30 20:51:45,988 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 20:51:46,004 | INFO |    Sentencias detectadas: 3
+2025-10-30 20:51:46,005 | ERROR |    ROLLBACK por error en oro_website_granular.sql: debe ser dueño de la vista oro_website_granular
+
+2025-10-30 20:51:46,006 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 20:51:46,017 | INFO |    Sentencias detectadas: 2
+2025-10-30 20:51:46,020 | INFO |    OK sentencia 1/2
+2025-10-30 20:51:46,028 | INFO |    OK sentencia 2/2
+2025-10-30 20:51:46,029 | INFO |    COMMIT (0.02s)
+2025-10-30 20:51:46,029 | INFO | Archivos ejecutados con éxito: 10/20
+2025-10-30 22:27:40,083 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 22:27:40,083 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 22:27:40,083 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 22:27:40,130 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 22:27:40,131 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:27:40,137 | INFO |    OK sentencia 1/2
+2025-10-30 22:27:40,144 | INFO |    OK sentencia 2/2
+2025-10-30 22:27:40,146 | INFO |    COMMIT (0.02s)
+2025-10-30 22:27:40,146 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 22:27:40,146 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:27:40,150 | INFO |    OK sentencia 1/2
+2025-10-30 22:27:40,161 | INFO |    OK sentencia 2/2
+2025-10-30 22:27:40,162 | INFO |    COMMIT (0.02s)
+2025-10-30 22:27:40,162 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 22:27:40,162 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,167 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,174 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,203 | INFO |    OK sentencia 3/3
+2025-10-30 22:27:40,204 | INFO |    COMMIT (0.04s)
+2025-10-30 22:27:40,204 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 22:27:40,205 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,206 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,210 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,223 | INFO |    OK sentencia 3/3
+2025-10-30 22:27:40,223 | INFO |    COMMIT (0.02s)
+2025-10-30 22:27:40,224 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 22:27:40,225 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:27:40,227 | INFO |    OK sentencia 1/2
+2025-10-30 22:27:40,250 | INFO |    OK sentencia 2/2
+2025-10-30 22:27:40,251 | INFO |    COMMIT (0.03s)
+2025-10-30 22:27:40,251 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 22:27:40,252 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,253 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,263 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,288 | INFO |    OK sentencia 3/3
+2025-10-30 22:27:40,289 | INFO |    COMMIT (0.04s)
+2025-10-30 22:27:40,289 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 22:27:40,290 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,291 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,294 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,300 | INFO |    OK sentencia 3/3
+2025-10-30 22:27:40,301 | INFO |    COMMIT (0.01s)
+2025-10-30 22:27:40,302 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 22:27:40,302 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:27:40,304 | INFO |    OK sentencia 1/2
+2025-10-30 22:27:40,307 | INFO |    OK sentencia 2/2
+2025-10-30 22:27:40,307 | INFO |    COMMIT (0.01s)
+2025-10-30 22:27:40,308 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 22:27:40,309 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,310 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,315 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,324 | INFO |    OK sentencia 3/3
+2025-10-30 22:27:40,325 | INFO |    COMMIT (0.02s)
+2025-10-30 22:27:40,325 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 22:27:40,326 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:27:40,328 | INFO |    OK sentencia 1/2
+2025-10-30 22:27:40,330 | INFO |    OK sentencia 2/2
+2025-10-30 22:27:40,331 | INFO |    COMMIT (0.01s)
+2025-10-30 22:27:40,333 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 22:27:40,335 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,337 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,343 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,368 | INFO |    OK sentencia 3/3
+2025-10-30 22:27:40,369 | INFO |    COMMIT (0.04s)
+2025-10-30 22:27:40,369 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 22:27:40,370 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,371 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,378 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,379 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 22:27:40,380 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 22:27:40,382 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:27:40,385 | INFO |    OK sentencia 1/2
+2025-10-30 22:27:40,386 | INFO |    OK sentencia 2/2
+2025-10-30 22:27:40,386 | INFO |    COMMIT (0.01s)
+2025-10-30 22:27:40,387 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 22:27:40,387 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,388 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,391 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,400 | INFO |    OK sentencia 3/3
+2025-10-30 22:27:40,400 | INFO |    COMMIT (0.01s)
+2025-10-30 22:27:40,400 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 22:27:40,401 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:27:40,403 | INFO |    OK sentencia 1/2
+2025-10-30 22:27:40,408 | INFO |    OK sentencia 2/2
+2025-10-30 22:27:40,409 | INFO |    COMMIT (0.01s)
+2025-10-30 22:27:40,409 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 22:27:40,410 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,410 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,414 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,432 | INFO |    OK sentencia 3/3
+2025-10-30 22:27:40,432 | INFO |    COMMIT (0.02s)
+2025-10-30 22:27:40,433 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 22:27:40,433 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:27:40,435 | INFO |    OK sentencia 1/2
+2025-10-30 22:27:40,438 | INFO |    OK sentencia 2/2
+2025-10-30 22:27:40,438 | INFO |    COMMIT (0.01s)
+2025-10-30 22:27:40,438 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 22:27:40,439 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,440 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,444 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,461 | INFO |    OK sentencia 3/3
+2025-10-30 22:27:40,462 | INFO |    COMMIT (0.02s)
+2025-10-30 22:27:40,462 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 22:27:40,462 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:27:40,463 | INFO |    OK sentencia 1/3
+2025-10-30 22:27:40,466 | INFO |    OK sentencia 2/3
+2025-10-30 22:27:40,472 | INFO |    OK sentencia 3/3
+2025-10-30 22:27:40,472 | INFO |    COMMIT (0.01s)
+2025-10-30 22:27:40,472 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 22:27:40,473 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:27:40,476 | INFO |    OK sentencia 1/2
+2025-10-30 22:27:40,480 | INFO |    OK sentencia 2/2
+2025-10-30 22:27:40,480 | INFO |    COMMIT (0.01s)
+2025-10-30 22:27:40,480 | INFO | Archivos ejecutados con éxito: 19/20
+2025-10-30 22:28:15,652 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 22:28:15,653 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 22:28:15,653 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 22:28:15,704 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 22:28:15,704 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:28:15,709 | INFO |    OK sentencia 1/2
+2025-10-30 22:28:15,715 | INFO |    OK sentencia 2/2
+2025-10-30 22:28:15,716 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,717 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 22:28:15,717 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:28:15,721 | INFO |    OK sentencia 1/2
+2025-10-30 22:28:15,729 | INFO |    OK sentencia 2/2
+2025-10-30 22:28:15,730 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,730 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 22:28:15,731 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,735 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,742 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,771 | INFO |    OK sentencia 3/3
+2025-10-30 22:28:15,772 | INFO |    COMMIT (0.04s)
+2025-10-30 22:28:15,772 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 22:28:15,773 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,775 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,780 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,791 | INFO |    OK sentencia 3/3
+2025-10-30 22:28:15,792 | INFO |    COMMIT (0.02s)
+2025-10-30 22:28:15,792 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 22:28:15,793 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:28:15,796 | INFO |    OK sentencia 1/2
+2025-10-30 22:28:15,814 | INFO |    OK sentencia 2/2
+2025-10-30 22:28:15,814 | INFO |    COMMIT (0.02s)
+2025-10-30 22:28:15,815 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 22:28:15,815 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,819 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,828 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,848 | INFO |    OK sentencia 3/3
+2025-10-30 22:28:15,849 | INFO |    COMMIT (0.03s)
+2025-10-30 22:28:15,849 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 22:28:15,849 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,851 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,854 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,861 | INFO |    OK sentencia 3/3
+2025-10-30 22:28:15,862 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,862 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 22:28:15,863 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:28:15,864 | INFO |    OK sentencia 1/2
+2025-10-30 22:28:15,867 | INFO |    OK sentencia 2/2
+2025-10-30 22:28:15,868 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,868 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 22:28:15,868 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,871 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,876 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,882 | INFO |    OK sentencia 3/3
+2025-10-30 22:28:15,883 | INFO |    COMMIT (0.02s)
+2025-10-30 22:28:15,883 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 22:28:15,884 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:28:15,886 | INFO |    OK sentencia 1/2
+2025-10-30 22:28:15,889 | INFO |    OK sentencia 2/2
+2025-10-30 22:28:15,889 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,889 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 22:28:15,890 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,891 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,893 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,901 | INFO |    OK sentencia 3/3
+2025-10-30 22:28:15,902 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,902 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 22:28:15,902 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,903 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,909 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,910 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 22:28:15,910 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 22:28:15,911 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:28:15,912 | INFO |    OK sentencia 1/2
+2025-10-30 22:28:15,912 | INFO |    OK sentencia 2/2
+2025-10-30 22:28:15,913 | INFO |    COMMIT (0.00s)
+2025-10-30 22:28:15,913 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 22:28:15,913 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,914 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,916 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,921 | INFO |    OK sentencia 3/3
+2025-10-30 22:28:15,922 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,922 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 22:28:15,922 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:28:15,924 | INFO |    OK sentencia 1/2
+2025-10-30 22:28:15,928 | INFO |    OK sentencia 2/2
+2025-10-30 22:28:15,929 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,930 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 22:28:15,930 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,931 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,933 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,941 | INFO |    OK sentencia 3/3
+2025-10-30 22:28:15,941 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,941 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 22:28:15,942 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:28:15,943 | INFO |    OK sentencia 1/2
+2025-10-30 22:28:15,945 | INFO |    OK sentencia 2/2
+2025-10-30 22:28:15,946 | INFO |    COMMIT (0.00s)
+2025-10-30 22:28:15,946 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 22:28:15,947 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,948 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,951 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,956 | INFO |    OK sentencia 3/3
+2025-10-30 22:28:15,957 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,957 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 22:28:15,958 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:28:15,959 | INFO |    OK sentencia 1/3
+2025-10-30 22:28:15,962 | INFO |    OK sentencia 2/3
+2025-10-30 22:28:15,965 | INFO |    OK sentencia 3/3
+2025-10-30 22:28:15,966 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,967 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 22:28:15,967 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:28:15,969 | INFO |    OK sentencia 1/2
+2025-10-30 22:28:15,972 | INFO |    OK sentencia 2/2
+2025-10-30 22:28:15,973 | INFO |    COMMIT (0.01s)
+2025-10-30 22:28:15,973 | INFO | Archivos ejecutados con éxito: 19/20
+2025-10-30 22:33:28,143 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 22:33:28,144 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 22:33:28,144 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 22:33:28,191 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 22:33:28,192 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:28,197 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:28,205 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:28,207 | INFO |    COMMIT (0.02s)
+2025-10-30 22:33:28,207 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 22:33:28,207 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:28,211 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:28,221 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:28,222 | INFO |    COMMIT (0.02s)
+2025-10-30 22:33:28,222 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 22:33:28,223 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,227 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,236 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,265 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:28,266 | INFO |    COMMIT (0.04s)
+2025-10-30 22:33:28,266 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 22:33:28,267 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,268 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,272 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,283 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:28,284 | INFO |    COMMIT (0.02s)
+2025-10-30 22:33:28,284 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 22:33:28,285 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:28,288 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:28,305 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:28,306 | INFO |    COMMIT (0.02s)
+2025-10-30 22:33:28,306 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 22:33:28,306 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,309 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,318 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,337 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:28,338 | INFO |    COMMIT (0.03s)
+2025-10-30 22:33:28,338 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 22:33:28,339 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,340 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,343 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,349 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:28,350 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:28,350 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 22:33:28,351 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:28,353 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:28,355 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:28,356 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:28,356 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 22:33:28,356 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,359 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,365 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,373 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:28,374 | INFO |    COMMIT (0.02s)
+2025-10-30 22:33:28,374 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 22:33:28,375 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:28,376 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:28,378 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:28,379 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:28,380 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 22:33:28,380 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,382 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,385 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,393 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:28,393 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:28,394 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 22:33:28,394 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,395 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,400 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,400 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 22:33:28,401 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 22:33:28,401 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:28,402 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:28,403 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:28,404 | INFO |    COMMIT (0.00s)
+2025-10-30 22:33:28,404 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 22:33:28,404 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,406 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,407 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,412 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:28,412 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:28,412 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 22:33:28,413 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:28,415 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:28,419 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:28,420 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:28,420 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 22:33:28,421 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,422 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,424 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,431 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:28,432 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:28,432 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 22:33:28,433 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:28,435 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:28,437 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:28,437 | INFO |    COMMIT (0.00s)
+2025-10-30 22:33:28,437 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 22:33:28,438 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,440 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,442 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,448 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:28,449 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:28,449 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 22:33:28,450 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:28,451 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:28,453 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:28,456 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:28,457 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:28,457 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 22:33:28,458 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:28,460 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:28,464 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:28,465 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:28,465 | INFO | Archivos ejecutados con éxito: 19/20
+2025-10-30 22:33:55,933 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 22:33:55,933 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 22:33:55,933 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 22:33:55,979 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 22:33:55,979 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:55,985 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:55,991 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:55,992 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:55,992 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 22:33:55,993 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:55,997 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:56,007 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:56,008 | INFO |    COMMIT (0.02s)
+2025-10-30 22:33:56,008 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 22:33:56,009 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,013 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,020 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,045 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:56,046 | INFO |    COMMIT (0.04s)
+2025-10-30 22:33:56,046 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 22:33:56,046 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,048 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,053 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,061 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:56,062 | INFO |    COMMIT (0.02s)
+2025-10-30 22:33:56,062 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 22:33:56,063 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:56,065 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:56,082 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:56,082 | INFO |    COMMIT (0.02s)
+2025-10-30 22:33:56,083 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 22:33:56,083 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,086 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,095 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,115 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:56,116 | INFO |    COMMIT (0.03s)
+2025-10-30 22:33:56,116 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 22:33:56,116 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,118 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,120 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,127 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:56,128 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,128 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 22:33:56,129 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:56,131 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:56,133 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:56,134 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,134 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 22:33:56,134 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,137 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,143 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,150 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:56,151 | INFO |    COMMIT (0.02s)
+2025-10-30 22:33:56,151 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 22:33:56,152 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:56,154 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:56,156 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:56,157 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,157 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 22:33:56,157 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,159 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,161 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,169 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:56,170 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,170 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 22:33:56,170 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,171 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,177 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,178 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 22:33:56,178 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 22:33:56,179 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:56,180 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:56,181 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:56,181 | INFO |    COMMIT (0.00s)
+2025-10-30 22:33:56,182 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 22:33:56,182 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,183 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,185 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,188 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:56,188 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,188 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 22:33:56,189 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:56,191 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:56,195 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:56,196 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,196 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 22:33:56,196 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,198 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,200 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,208 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:56,209 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,209 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 22:33:56,209 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:56,211 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:56,214 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:56,215 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,215 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 22:33:56,215 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,217 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,221 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,228 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:56,228 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,229 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 22:33:56,229 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:33:56,230 | INFO |    OK sentencia 1/3
+2025-10-30 22:33:56,234 | INFO |    OK sentencia 2/3
+2025-10-30 22:33:56,237 | INFO |    OK sentencia 3/3
+2025-10-30 22:33:56,238 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,238 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 22:33:56,239 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:33:56,241 | INFO |    OK sentencia 1/2
+2025-10-30 22:33:56,245 | INFO |    OK sentencia 2/2
+2025-10-30 22:33:56,246 | INFO |    COMMIT (0.01s)
+2025-10-30 22:33:56,246 | INFO | Archivos ejecutados con éxito: 19/20
+2025-10-30 22:34:00,935 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 22:34:00,935 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 22:34:00,935 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 22:34:00,979 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 22:34:00,980 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:34:00,986 | INFO |    OK sentencia 1/2
+2025-10-30 22:34:00,991 | INFO |    OK sentencia 2/2
+2025-10-30 22:34:00,993 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:00,993 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 22:34:00,994 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:34:00,997 | INFO |    OK sentencia 1/2
+2025-10-30 22:34:01,007 | INFO |    OK sentencia 2/2
+2025-10-30 22:34:01,007 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,008 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 22:34:01,008 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,012 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,021 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,046 | INFO |    OK sentencia 3/3
+2025-10-30 22:34:01,047 | INFO |    COMMIT (0.04s)
+2025-10-30 22:34:01,047 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 22:34:01,048 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,049 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,053 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,063 | INFO |    OK sentencia 3/3
+2025-10-30 22:34:01,064 | INFO |    COMMIT (0.02s)
+2025-10-30 22:34:01,064 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 22:34:01,065 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:34:01,067 | INFO |    OK sentencia 1/2
+2025-10-30 22:34:01,085 | INFO |    OK sentencia 2/2
+2025-10-30 22:34:01,086 | INFO |    COMMIT (0.02s)
+2025-10-30 22:34:01,086 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 22:34:01,087 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,090 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,098 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,117 | INFO |    OK sentencia 3/3
+2025-10-30 22:34:01,118 | INFO |    COMMIT (0.03s)
+2025-10-30 22:34:01,118 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 22:34:01,119 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,120 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,123 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,129 | INFO |    OK sentencia 3/3
+2025-10-30 22:34:01,130 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,130 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 22:34:01,130 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:34:01,132 | INFO |    OK sentencia 1/2
+2025-10-30 22:34:01,135 | INFO |    OK sentencia 2/2
+2025-10-30 22:34:01,135 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,135 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 22:34:01,136 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,138 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,143 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,150 | INFO |    OK sentencia 3/3
+2025-10-30 22:34:01,150 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,150 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 22:34:01,151 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:34:01,153 | INFO |    OK sentencia 1/2
+2025-10-30 22:34:01,155 | INFO |    OK sentencia 2/2
+2025-10-30 22:34:01,155 | INFO |    COMMIT (0.00s)
+2025-10-30 22:34:01,155 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 22:34:01,156 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,157 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,160 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,167 | INFO |    OK sentencia 3/3
+2025-10-30 22:34:01,168 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,168 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 22:34:01,169 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,169 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,174 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,175 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 22:34:01,176 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 22:34:01,176 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:34:01,177 | INFO |    OK sentencia 1/2
+2025-10-30 22:34:01,178 | INFO |    OK sentencia 2/2
+2025-10-30 22:34:01,179 | INFO |    COMMIT (0.00s)
+2025-10-30 22:34:01,179 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 22:34:01,179 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,181 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,183 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,186 | INFO |    OK sentencia 3/3
+2025-10-30 22:34:01,187 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,187 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 22:34:01,187 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:34:01,189 | INFO |    OK sentencia 1/2
+2025-10-30 22:34:01,194 | INFO |    OK sentencia 2/2
+2025-10-30 22:34:01,195 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,195 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 22:34:01,195 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,196 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,199 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,206 | INFO |    OK sentencia 3/3
+2025-10-30 22:34:01,207 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,207 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 22:34:01,207 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:34:01,209 | INFO |    OK sentencia 1/2
+2025-10-30 22:34:01,211 | INFO |    OK sentencia 2/2
+2025-10-30 22:34:01,212 | INFO |    COMMIT (0.00s)
+2025-10-30 22:34:01,212 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 22:34:01,212 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,213 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,217 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,223 | INFO |    OK sentencia 3/3
+2025-10-30 22:34:01,224 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,224 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 22:34:01,225 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:34:01,226 | INFO |    OK sentencia 1/3
+2025-10-30 22:34:01,228 | INFO |    OK sentencia 2/3
+2025-10-30 22:34:01,231 | INFO |    OK sentencia 3/3
+2025-10-30 22:34:01,232 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,232 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 22:34:01,232 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:34:01,234 | INFO |    OK sentencia 1/2
+2025-10-30 22:34:01,237 | INFO |    OK sentencia 2/2
+2025-10-30 22:34:01,238 | INFO |    COMMIT (0.01s)
+2025-10-30 22:34:01,238 | INFO | Archivos ejecutados con éxito: 19/20
+2025-10-30 22:35:27,277 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 22:35:27,278 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 22:35:27,278 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 22:35:27,323 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 22:35:27,324 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:35:27,330 | INFO |    OK sentencia 1/2
+2025-10-30 22:35:27,338 | INFO |    OK sentencia 2/2
+2025-10-30 22:35:27,339 | INFO |    COMMIT (0.02s)
+2025-10-30 22:35:27,339 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 22:35:27,340 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:35:27,343 | INFO |    OK sentencia 1/2
+2025-10-30 22:35:27,354 | INFO |    OK sentencia 2/2
+2025-10-30 22:35:27,354 | INFO |    COMMIT (0.01s)
+2025-10-30 22:35:27,354 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 22:35:27,355 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,359 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,368 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,397 | INFO |    OK sentencia 3/3
+2025-10-30 22:35:27,398 | INFO |    COMMIT (0.04s)
+2025-10-30 22:35:27,398 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 22:35:27,398 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,400 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,404 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,414 | INFO |    OK sentencia 3/3
+2025-10-30 22:35:27,415 | INFO |    COMMIT (0.02s)
+2025-10-30 22:35:27,415 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 22:35:27,415 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:35:27,418 | INFO |    OK sentencia 1/2
+2025-10-30 22:35:27,439 | INFO |    OK sentencia 2/2
+2025-10-30 22:35:27,440 | INFO |    COMMIT (0.02s)
+2025-10-30 22:35:27,440 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 22:35:27,441 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,444 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,454 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,476 | INFO |    OK sentencia 3/3
+2025-10-30 22:35:27,477 | INFO |    COMMIT (0.04s)
+2025-10-30 22:35:27,477 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 22:35:27,478 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,479 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,482 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,490 | INFO |    OK sentencia 3/3
+2025-10-30 22:35:27,490 | INFO |    COMMIT (0.01s)
+2025-10-30 22:35:27,491 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 22:35:27,491 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:35:27,493 | INFO |    OK sentencia 1/2
+2025-10-30 22:35:27,495 | INFO |    OK sentencia 2/2
+2025-10-30 22:35:27,496 | INFO |    COMMIT (0.01s)
+2025-10-30 22:35:27,496 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 22:35:27,497 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,499 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,504 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,512 | INFO |    OK sentencia 3/3
+2025-10-30 22:35:27,513 | INFO |    COMMIT (0.02s)
+2025-10-30 22:35:27,513 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 22:35:27,513 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:35:27,515 | INFO |    OK sentencia 1/2
+2025-10-30 22:35:27,518 | INFO |    OK sentencia 2/2
+2025-10-30 22:35:27,519 | INFO |    COMMIT (0.01s)
+2025-10-30 22:35:27,519 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 22:35:27,520 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,521 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,524 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,535 | INFO |    OK sentencia 3/3
+2025-10-30 22:35:27,536 | INFO |    COMMIT (0.02s)
+2025-10-30 22:35:27,536 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 22:35:27,537 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,538 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,543 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,544 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 22:35:27,545 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 22:35:27,545 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:35:27,547 | INFO |    OK sentencia 1/2
+2025-10-30 22:35:27,547 | INFO |    OK sentencia 2/2
+2025-10-30 22:35:27,548 | INFO |    COMMIT (0.00s)
+2025-10-30 22:35:27,548 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 22:35:27,549 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,550 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,552 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,558 | INFO |    OK sentencia 3/3
+2025-10-30 22:35:27,559 | INFO |    COMMIT (0.01s)
+2025-10-30 22:35:27,559 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 22:35:27,560 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:35:27,562 | INFO |    OK sentencia 1/2
+2025-10-30 22:35:27,570 | INFO |    OK sentencia 2/2
+2025-10-30 22:35:27,573 | INFO |    COMMIT (0.01s)
+2025-10-30 22:35:27,573 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 22:35:27,575 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,577 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,581 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,598 | INFO |    OK sentencia 3/3
+2025-10-30 22:35:27,599 | INFO |    COMMIT (0.03s)
+2025-10-30 22:35:27,599 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 22:35:27,600 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:35:27,602 | INFO |    OK sentencia 1/2
+2025-10-30 22:35:27,606 | INFO |    OK sentencia 2/2
+2025-10-30 22:35:27,607 | INFO |    COMMIT (0.01s)
+2025-10-30 22:35:27,608 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 22:35:27,609 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,611 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,614 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,625 | INFO |    OK sentencia 3/3
+2025-10-30 22:35:27,626 | INFO |    COMMIT (0.02s)
+2025-10-30 22:35:27,627 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 22:35:27,628 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:35:27,630 | INFO |    OK sentencia 1/3
+2025-10-30 22:35:27,632 | INFO |    OK sentencia 2/3
+2025-10-30 22:35:27,638 | INFO |    OK sentencia 3/3
+2025-10-30 22:35:27,639 | INFO |    COMMIT (0.01s)
+2025-10-30 22:35:27,639 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 22:35:27,640 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:35:27,642 | INFO |    OK sentencia 1/2
+2025-10-30 22:35:27,648 | INFO |    OK sentencia 2/2
+2025-10-30 22:35:27,649 | INFO |    COMMIT (0.01s)
+2025-10-30 22:35:27,649 | INFO | Archivos ejecutados con éxito: 19/20
+2025-10-30 22:36:35,854 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 22:36:35,855 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 22:36:35,855 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 22:36:35,905 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 22:36:35,906 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:36:35,911 | INFO |    OK sentencia 1/2
+2025-10-30 22:36:35,916 | INFO |    OK sentencia 2/2
+2025-10-30 22:36:35,918 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:35,918 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 22:36:35,919 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:36:35,922 | INFO |    OK sentencia 1/2
+2025-10-30 22:36:35,932 | INFO |    OK sentencia 2/2
+2025-10-30 22:36:35,932 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:35,933 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 22:36:35,933 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:35,937 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:35,945 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:35,970 | INFO |    OK sentencia 3/3
+2025-10-30 22:36:35,971 | INFO |    COMMIT (0.04s)
+2025-10-30 22:36:35,971 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 22:36:35,972 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:35,973 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:35,978 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:35,986 | INFO |    OK sentencia 3/3
+2025-10-30 22:36:35,987 | INFO |    COMMIT (0.02s)
+2025-10-30 22:36:35,987 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 22:36:35,988 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:36:35,991 | INFO |    OK sentencia 1/2
+2025-10-30 22:36:36,007 | INFO |    OK sentencia 2/2
+2025-10-30 22:36:36,008 | INFO |    COMMIT (0.02s)
+2025-10-30 22:36:36,008 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 22:36:36,009 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:36,012 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:36,020 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:36,039 | INFO |    OK sentencia 3/3
+2025-10-30 22:36:36,040 | INFO |    COMMIT (0.03s)
+2025-10-30 22:36:36,040 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 22:36:36,040 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:36,042 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:36,045 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:36,052 | INFO |    OK sentencia 3/3
+2025-10-30 22:36:36,053 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,053 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 22:36:36,054 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:36:36,055 | INFO |    OK sentencia 1/2
+2025-10-30 22:36:36,058 | INFO |    OK sentencia 2/2
+2025-10-30 22:36:36,059 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,059 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 22:36:36,059 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:36,061 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:36,067 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:36,074 | INFO |    OK sentencia 3/3
+2025-10-30 22:36:36,075 | INFO |    COMMIT (0.02s)
+2025-10-30 22:36:36,075 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 22:36:36,076 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:36:36,078 | INFO |    OK sentencia 1/2
+2025-10-30 22:36:36,080 | INFO |    OK sentencia 2/2
+2025-10-30 22:36:36,080 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,080 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 22:36:36,081 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:36,082 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:36,084 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:36,092 | INFO |    OK sentencia 3/3
+2025-10-30 22:36:36,092 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,093 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 22:36:36,093 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:36,094 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:36,099 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:36,100 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 22:36:36,100 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 22:36:36,101 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:36:36,102 | INFO |    OK sentencia 1/2
+2025-10-30 22:36:36,102 | INFO |    OK sentencia 2/2
+2025-10-30 22:36:36,103 | INFO |    COMMIT (0.00s)
+2025-10-30 22:36:36,103 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 22:36:36,103 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:36,104 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:36,106 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:36,110 | INFO |    OK sentencia 3/3
+2025-10-30 22:36:36,111 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,111 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 22:36:36,112 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:36:36,113 | INFO |    OK sentencia 1/2
+2025-10-30 22:36:36,117 | INFO |    OK sentencia 2/2
+2025-10-30 22:36:36,118 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,118 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 22:36:36,119 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:36,120 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:36,122 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:36,131 | INFO |    OK sentencia 3/3
+2025-10-30 22:36:36,132 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,132 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 22:36:36,132 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:36:36,134 | INFO |    OK sentencia 1/2
+2025-10-30 22:36:36,137 | INFO |    OK sentencia 2/2
+2025-10-30 22:36:36,137 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,138 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 22:36:36,139 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:36,140 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:36,143 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:36,151 | INFO |    OK sentencia 3/3
+2025-10-30 22:36:36,151 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,152 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 22:36:36,152 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:36:36,153 | INFO |    OK sentencia 1/3
+2025-10-30 22:36:36,155 | INFO |    OK sentencia 2/3
+2025-10-30 22:36:36,160 | INFO |    OK sentencia 3/3
+2025-10-30 22:36:36,160 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,161 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 22:36:36,161 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:36:36,163 | INFO |    OK sentencia 1/2
+2025-10-30 22:36:36,170 | INFO |    OK sentencia 2/2
+2025-10-30 22:36:36,171 | INFO |    COMMIT (0.01s)
+2025-10-30 22:36:36,171 | INFO | Archivos ejecutados con éxito: 19/20
+2025-10-30 22:38:30,492 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 22:38:30,492 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 22:38:30,493 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 22:38:30,541 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 22:38:30,542 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:38:30,552 | INFO |    OK sentencia 1/2
+2025-10-30 22:38:30,561 | INFO |    OK sentencia 2/2
+2025-10-30 22:38:30,563 | INFO |    COMMIT (0.02s)
+2025-10-30 22:38:30,563 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 22:38:30,564 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:38:30,568 | INFO |    OK sentencia 1/2
+2025-10-30 22:38:30,579 | INFO |    OK sentencia 2/2
+2025-10-30 22:38:30,580 | INFO |    COMMIT (0.02s)
+2025-10-30 22:38:30,580 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 22:38:30,581 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,584 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,589 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,618 | INFO |    OK sentencia 3/3
+2025-10-30 22:38:30,619 | INFO |    COMMIT (0.04s)
+2025-10-30 22:38:30,620 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 22:38:30,620 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,622 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,628 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,638 | INFO |    OK sentencia 3/3
+2025-10-30 22:38:30,639 | INFO |    COMMIT (0.02s)
+2025-10-30 22:38:30,639 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 22:38:30,640 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:38:30,643 | INFO |    OK sentencia 1/2
+2025-10-30 22:38:30,664 | INFO |    OK sentencia 2/2
+2025-10-30 22:38:30,664 | INFO |    COMMIT (0.03s)
+2025-10-30 22:38:30,665 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 22:38:30,665 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,668 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,676 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,696 | INFO |    OK sentencia 3/3
+2025-10-30 22:38:30,697 | INFO |    COMMIT (0.03s)
+2025-10-30 22:38:30,698 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 22:38:30,698 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,699 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,703 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,708 | INFO |    OK sentencia 3/3
+2025-10-30 22:38:30,709 | INFO |    COMMIT (0.01s)
+2025-10-30 22:38:30,709 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 22:38:30,710 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:38:30,712 | INFO |    OK sentencia 1/2
+2025-10-30 22:38:30,714 | INFO |    OK sentencia 2/2
+2025-10-30 22:38:30,714 | INFO |    COMMIT (0.01s)
+2025-10-30 22:38:30,715 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 22:38:30,715 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,717 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,723 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,729 | INFO |    OK sentencia 3/3
+2025-10-30 22:38:30,731 | INFO |    COMMIT (0.02s)
+2025-10-30 22:38:30,731 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 22:38:30,732 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:38:30,733 | INFO |    OK sentencia 1/2
+2025-10-30 22:38:30,735 | INFO |    OK sentencia 2/2
+2025-10-30 22:38:30,736 | INFO |    COMMIT (0.00s)
+2025-10-30 22:38:30,736 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 22:38:30,737 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,738 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,740 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,748 | INFO |    OK sentencia 3/3
+2025-10-30 22:38:30,748 | INFO |    COMMIT (0.01s)
+2025-10-30 22:38:30,749 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 22:38:30,749 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,750 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,755 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,756 | ERROR |    ROLLBACK por error en oro_product_granular.sql: no existe la relación «oro_product_granular»
+LINE 1: SELECT * FROM oro_product_granular
+                      ^
+
+2025-10-30 22:38:30,756 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 22:38:30,757 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:38:30,758 | INFO |    OK sentencia 1/2
+2025-10-30 22:38:30,759 | INFO |    OK sentencia 2/2
+2025-10-30 22:38:30,761 | INFO |    COMMIT (0.00s)
+2025-10-30 22:38:30,761 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 22:38:30,761 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,763 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,764 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,767 | INFO |    OK sentencia 3/3
+2025-10-30 22:38:30,768 | INFO |    COMMIT (0.01s)
+2025-10-30 22:38:30,768 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 22:38:30,769 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:38:30,771 | INFO |    OK sentencia 1/2
+2025-10-30 22:38:30,776 | INFO |    OK sentencia 2/2
+2025-10-30 22:38:30,776 | INFO |    COMMIT (0.01s)
+2025-10-30 22:38:30,776 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 22:38:30,777 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,778 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,780 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,787 | INFO |    OK sentencia 3/3
+2025-10-30 22:38:30,788 | INFO |    COMMIT (0.01s)
+2025-10-30 22:38:30,788 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 22:38:30,789 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:38:30,790 | INFO |    OK sentencia 1/2
+2025-10-30 22:38:30,793 | INFO |    OK sentencia 2/2
+2025-10-30 22:38:30,793 | INFO |    COMMIT (0.00s)
+2025-10-30 22:38:30,794 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 22:38:30,794 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,796 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,798 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,806 | INFO |    OK sentencia 3/3
+2025-10-30 22:38:30,806 | INFO |    COMMIT (0.01s)
+2025-10-30 22:38:30,806 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 22:38:30,807 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:38:30,808 | INFO |    OK sentencia 1/3
+2025-10-30 22:38:30,810 | INFO |    OK sentencia 2/3
+2025-10-30 22:38:30,813 | INFO |    OK sentencia 3/3
+2025-10-30 22:38:30,814 | INFO |    COMMIT (0.01s)
+2025-10-30 22:38:30,814 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 22:38:30,815 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:38:30,817 | INFO |    OK sentencia 1/2
+2025-10-30 22:38:30,822 | INFO |    OK sentencia 2/2
+2025-10-30 22:38:30,822 | INFO |    COMMIT (0.01s)
+2025-10-30 22:38:30,822 | INFO | Archivos ejecutados con éxito: 19/20
+2025-10-30 22:41:32,383 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-30 22:41:32,384 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-30 22:41:32,384 | INFO | Ejecutando 20 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-30 22:41:32,432 | INFO | [1/20] Ejecutando: oro_address_granular.sql
+2025-10-30 22:41:32,433 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:41:32,438 | INFO |    OK sentencia 1/2
+2025-10-30 22:41:32,445 | INFO |    OK sentencia 2/2
+2025-10-30 22:41:32,446 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,446 | INFO | [2/20] Ejecutando: oro_catalog_category_granular.sql
+2025-10-30 22:41:32,447 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:41:32,451 | INFO |    OK sentencia 1/2
+2025-10-30 22:41:32,462 | INFO |    OK sentencia 2/2
+2025-10-30 22:41:32,463 | INFO |    COMMIT (0.02s)
+2025-10-30 22:41:32,463 | INFO | [3/20] Ejecutando: oro_customer_granular.sql
+2025-10-30 22:41:32,463 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,467 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,477 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,503 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,504 | INFO |    COMMIT (0.04s)
+2025-10-30 22:41:32,504 | INFO | [4/20] Ejecutando: oro_customer_user_granular.sql
+2025-10-30 22:41:32,504 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,506 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,510 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,522 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,522 | INFO |    COMMIT (0.02s)
+2025-10-30 22:41:32,523 | INFO | [5/20] Ejecutando: oro_inventory_level_granular.sql
+2025-10-30 22:41:32,523 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:41:32,526 | INFO |    OK sentencia 1/2
+2025-10-30 22:41:32,545 | INFO |    OK sentencia 2/2
+2025-10-30 22:41:32,546 | INFO |    COMMIT (0.02s)
+2025-10-30 22:41:32,546 | INFO | [6/20] Ejecutando: oro_order_granular.sql
+2025-10-30 22:41:32,546 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,550 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,559 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,580 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,581 | INFO |    COMMIT (0.04s)
+2025-10-30 22:41:32,581 | INFO | [7/20] Ejecutando: oro_order_line_item_granular.sql
+2025-10-30 22:41:32,582 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,583 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,586 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,594 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,594 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,595 | INFO | [8/20] Ejecutando: oro_payment_status_granular.sql
+2025-10-30 22:41:32,595 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:41:32,597 | INFO |    OK sentencia 1/2
+2025-10-30 22:41:32,599 | INFO |    OK sentencia 2/2
+2025-10-30 22:41:32,600 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,600 | INFO | [9/20] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-30 22:41:32,601 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,603 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,609 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,616 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,617 | INFO |    COMMIT (0.02s)
+2025-10-30 22:41:32,617 | INFO | [10/20] Ejecutando: oro_price_list_granular.sql
+2025-10-30 22:41:32,618 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:41:32,620 | INFO |    OK sentencia 1/2
+2025-10-30 22:41:32,622 | INFO |    OK sentencia 2/2
+2025-10-30 22:41:32,623 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,623 | INFO | [11/20] Ejecutando: oro_price_product_granular.sql
+2025-10-30 22:41:32,623 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,625 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,628 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,637 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,637 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,638 | INFO | [12/20] Ejecutando: oro_product_granular.sql
+2025-10-30 22:41:32,653 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,654 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,660 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,689 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,690 | INFO |    COMMIT (0.05s)
+2025-10-30 22:41:32,690 | INFO | [13/20] Ejecutando: oro_product_unit_granular.sql
+2025-10-30 22:41:32,690 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:41:32,692 | INFO |    OK sentencia 1/2
+2025-10-30 22:41:32,692 | INFO |    OK sentencia 2/2
+2025-10-30 22:41:32,692 | INFO |    COMMIT (0.00s)
+2025-10-30 22:41:32,692 | INFO | [14/20] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-30 22:41:32,693 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,694 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,696 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,701 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,702 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,702 | INFO | [15/20] Ejecutando: oro_promotion_granular.sql
+2025-10-30 22:41:32,702 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:41:32,704 | INFO |    OK sentencia 1/2
+2025-10-30 22:41:32,708 | INFO |    OK sentencia 2/2
+2025-10-30 22:41:32,709 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,709 | INFO | [16/20] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-30 22:41:32,710 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,711 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,713 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,720 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,721 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,721 | INFO | [17/20] Ejecutando: oro_tax_granular.sql
+2025-10-30 22:41:32,721 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:41:32,723 | INFO |    OK sentencia 1/2
+2025-10-30 22:41:32,725 | INFO |    OK sentencia 2/2
+2025-10-30 22:41:32,726 | INFO |    COMMIT (0.00s)
+2025-10-30 22:41:32,726 | INFO | [18/20] Ejecutando: oro_user_granular.sql
+2025-10-30 22:41:32,726 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,728 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,731 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,736 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,737 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,737 | INFO | [19/20] Ejecutando: oro_website_granular.sql
+2025-10-30 22:41:32,737 | INFO |    Sentencias detectadas: 3
+2025-10-30 22:41:32,739 | INFO |    OK sentencia 1/3
+2025-10-30 22:41:32,741 | INFO |    OK sentencia 2/3
+2025-10-30 22:41:32,744 | INFO |    OK sentencia 3/3
+2025-10-30 22:41:32,745 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,745 | INFO | [20/20] Ejecutando: orocrm_channel_granular.sql
+2025-10-30 22:41:32,746 | INFO |    Sentencias detectadas: 2
+2025-10-30 22:41:32,749 | INFO |    OK sentencia 1/2
+2025-10-30 22:41:32,753 | INFO |    OK sentencia 2/2
+2025-10-30 22:41:32,753 | INFO |    COMMIT (0.01s)
+2025-10-30 22:41:32,753 | INFO | Archivos ejecutados con éxito: 20/20
+2025-10-31 01:57:28,140 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-31 01:57:28,140 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-31 01:57:28,140 | INFO | Ejecutando 24 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-31 01:57:28,291 | INFO | [1/24] Ejecutando: oro_address_granular.sql
+2025-10-31 01:57:28,303 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,311 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,317 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,319 | INFO |    COMMIT (0.03s)
+2025-10-31 01:57:28,319 | INFO | [2/24] Ejecutando: oro_catalog_category_granular.sql
+2025-10-31 01:57:28,328 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,332 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,343 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,344 | INFO |    COMMIT (0.02s)
+2025-10-31 01:57:28,344 | INFO | [3/24] Ejecutando: oro_customer_granular.sql
+2025-10-31 01:57:28,355 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,359 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,367 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,399 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,400 | INFO |    COMMIT (0.06s)
+2025-10-31 01:57:28,400 | INFO | [4/24] Ejecutando: oro_customer_user_granular.sql
+2025-10-31 01:57:28,411 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,413 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,416 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,427 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,428 | INFO |    COMMIT (0.03s)
+2025-10-31 01:57:28,429 | INFO | [5/24] Ejecutando: oro_inventory_level_granular.sql
+2025-10-31 01:57:28,442 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,445 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,467 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,468 | INFO |    COMMIT (0.04s)
+2025-10-31 01:57:28,469 | INFO | [6/24] Ejecutando: oro_order_granular.sql
+2025-10-31 01:57:28,482 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,485 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,495 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,514 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,515 | INFO |    COMMIT (0.05s)
+2025-10-31 01:57:28,515 | INFO | [7/24] Ejecutando: oro_order_line_item_granular.sql
+2025-10-31 01:57:28,530 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,531 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,534 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,542 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,543 | INFO |    COMMIT (0.03s)
+2025-10-31 01:57:28,543 | INFO | [8/24] Ejecutando: oro_payment_status_granular.sql
+2025-10-31 01:57:28,552 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,554 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,557 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,558 | INFO |    COMMIT (0.01s)
+2025-10-31 01:57:28,558 | INFO | [9/24] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-31 01:57:28,572 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,574 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,580 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,588 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,589 | INFO |    COMMIT (0.03s)
+2025-10-31 01:57:28,590 | INFO | [10/24] Ejecutando: oro_price_list_granular.sql
+2025-10-31 01:57:28,602 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,604 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,606 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,607 | INFO |    COMMIT (0.02s)
+2025-10-31 01:57:28,607 | INFO | [11/24] Ejecutando: oro_price_product_granular.sql
+2025-10-31 01:57:28,618 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,619 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,622 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,632 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,633 | INFO |    COMMIT (0.03s)
+2025-10-31 01:57:28,633 | INFO | [12/24] Ejecutando: oro_product_granular.sql
+2025-10-31 01:57:28,645 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,648 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,654 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,673 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,674 | INFO |    COMMIT (0.04s)
+2025-10-31 01:57:28,674 | INFO | [13/24] Ejecutando: oro_product_unit_granular.sql
+2025-10-31 01:57:28,685 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,688 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,688 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,689 | INFO |    COMMIT (0.01s)
+2025-10-31 01:57:28,690 | INFO | [14/24] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-31 01:57:28,703 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,704 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,706 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,713 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,713 | INFO |    COMMIT (0.02s)
+2025-10-31 01:57:28,714 | INFO | [15/24] Ejecutando: oro_promotion_granular.sql
+2025-10-31 01:57:28,723 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,725 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,731 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,732 | INFO |    COMMIT (0.02s)
+2025-10-31 01:57:28,732 | INFO | [16/24] Ejecutando: oro_sale_quote_granular.sql
+2025-10-31 01:57:28,742 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,751 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,772 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,772 | INFO |    COMMIT (0.04s)
+2025-10-31 01:57:28,773 | INFO | [17/24] Ejecutando: oro_sale_quote_prod_offer_granular.sql
+2025-10-31 01:57:28,783 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,785 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,789 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,790 | INFO |    COMMIT (0.02s)
+2025-10-31 01:57:28,790 | INFO | [18/24] Ejecutando: oro_sale_quote_prod_request_granular.sql
+2025-10-31 01:57:28,800 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,802 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,806 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,808 | INFO |    COMMIT (0.02s)
+2025-10-31 01:57:28,808 | INFO | [19/24] Ejecutando: oro_sale_quote_product_granular.sql
+2025-10-31 01:57:28,819 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,821 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,825 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,826 | INFO |    COMMIT (0.02s)
+2025-10-31 01:57:28,827 | INFO | [20/24] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-31 01:57:28,836 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,838 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,842 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,854 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,854 | INFO |    COMMIT (0.03s)
+2025-10-31 01:57:28,854 | INFO | [21/24] Ejecutando: oro_tax_granular.sql
+2025-10-31 01:57:28,863 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,865 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,868 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,868 | INFO |    COMMIT (0.01s)
+2025-10-31 01:57:28,869 | INFO | [22/24] Ejecutando: oro_user_granular.sql
+2025-10-31 01:57:28,879 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,881 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,884 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,891 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,892 | INFO |    COMMIT (0.02s)
+2025-10-31 01:57:28,892 | INFO | [23/24] Ejecutando: oro_website_granular.sql
+2025-10-31 01:57:28,906 | INFO |    Sentencias detectadas: 3
+2025-10-31 01:57:28,908 | INFO |    OK sentencia 1/3
+2025-10-31 01:57:28,911 | INFO |    OK sentencia 2/3
+2025-10-31 01:57:28,915 | INFO |    OK sentencia 3/3
+2025-10-31 01:57:28,916 | INFO |    COMMIT (0.02s)
+2025-10-31 01:57:28,916 | INFO | [24/24] Ejecutando: orocrm_channel_granular.sql
+2025-10-31 01:57:28,926 | INFO |    Sentencias detectadas: 2
+2025-10-31 01:57:28,929 | INFO |    OK sentencia 1/2
+2025-10-31 01:57:28,933 | INFO |    OK sentencia 2/2
+2025-10-31 01:57:28,934 | INFO |    COMMIT (0.02s)
+2025-10-31 01:57:28,934 | INFO | Archivos ejecutados con éxito: 24/24
+2025-10-31 02:06:56,238 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-31 02:06:56,238 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-31 02:06:56,239 | INFO | Ejecutando 24 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-31 02:06:56,293 | INFO | [1/24] Ejecutando: oro_address_granular.sql
+2025-10-31 02:06:56,294 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,300 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,306 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,307 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,308 | INFO | [2/24] Ejecutando: oro_catalog_category_granular.sql
+2025-10-31 02:06:56,308 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,312 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,323 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,324 | INFO |    COMMIT (0.02s)
+2025-10-31 02:06:56,324 | INFO | [3/24] Ejecutando: oro_customer_granular.sql
+2025-10-31 02:06:56,325 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,330 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,337 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,369 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,370 | INFO |    COMMIT (0.05s)
+2025-10-31 02:06:56,370 | INFO | [4/24] Ejecutando: oro_customer_user_granular.sql
+2025-10-31 02:06:56,371 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,373 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,377 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,387 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,388 | INFO |    COMMIT (0.02s)
+2025-10-31 02:06:56,388 | INFO | [5/24] Ejecutando: oro_inventory_level_granular.sql
+2025-10-31 02:06:56,389 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,391 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,408 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,408 | INFO |    COMMIT (0.02s)
+2025-10-31 02:06:56,409 | INFO | [6/24] Ejecutando: oro_order_granular.sql
+2025-10-31 02:06:56,409 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,413 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,422 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,443 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,444 | INFO |    COMMIT (0.04s)
+2025-10-31 02:06:56,445 | INFO | [7/24] Ejecutando: oro_order_line_item_granular.sql
+2025-10-31 02:06:56,445 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,447 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,449 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,457 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,457 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,458 | INFO | [8/24] Ejecutando: oro_payment_status_granular.sql
+2025-10-31 02:06:56,458 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,460 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,463 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,463 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,464 | INFO | [9/24] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-31 02:06:56,464 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,466 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,473 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,481 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,482 | INFO |    COMMIT (0.02s)
+2025-10-31 02:06:56,482 | INFO | [10/24] Ejecutando: oro_price_list_granular.sql
+2025-10-31 02:06:56,482 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,484 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,486 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,486 | INFO |    COMMIT (0.00s)
+2025-10-31 02:06:56,487 | INFO | [11/24] Ejecutando: oro_price_product_granular.sql
+2025-10-31 02:06:56,487 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,489 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,492 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,501 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,502 | INFO |    COMMIT (0.02s)
+2025-10-31 02:06:56,502 | INFO | [12/24] Ejecutando: oro_product_granular.sql
+2025-10-31 02:06:56,503 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,505 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,510 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,530 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,531 | INFO |    COMMIT (0.03s)
+2025-10-31 02:06:56,531 | INFO | [13/24] Ejecutando: oro_product_unit_granular.sql
+2025-10-31 02:06:56,532 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,533 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,534 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,534 | INFO |    COMMIT (0.00s)
+2025-10-31 02:06:56,534 | INFO | [14/24] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-31 02:06:56,535 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,536 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,538 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,542 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,543 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,544 | INFO | [15/24] Ejecutando: oro_promotion_granular.sql
+2025-10-31 02:06:56,544 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,546 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,551 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,552 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,552 | INFO | [16/24] Ejecutando: oro_sale_quote_granular.sql
+2025-10-31 02:06:56,553 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,563 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,585 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,586 | INFO |    COMMIT (0.03s)
+2025-10-31 02:06:56,586 | INFO | [17/24] Ejecutando: oro_sale_quote_prod_offer_granular.sql
+2025-10-31 02:06:56,587 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,588 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,591 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,592 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,592 | INFO | [18/24] Ejecutando: oro_sale_quote_prod_request_granular.sql
+2025-10-31 02:06:56,593 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,594 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,598 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,599 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,599 | INFO | [19/24] Ejecutando: oro_sale_quote_product_granular.sql
+2025-10-31 02:06:56,599 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,602 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,608 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,608 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,608 | INFO | [20/24] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-31 02:06:56,609 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,610 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,613 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,624 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,625 | INFO |    COMMIT (0.02s)
+2025-10-31 02:06:56,625 | INFO | [21/24] Ejecutando: oro_tax_granular.sql
+2025-10-31 02:06:56,626 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,627 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,630 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,630 | INFO |    COMMIT (0.00s)
+2025-10-31 02:06:56,631 | INFO | [22/24] Ejecutando: oro_user_granular.sql
+2025-10-31 02:06:56,631 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,633 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,637 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,644 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,645 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,645 | INFO | [23/24] Ejecutando: oro_website_granular.sql
+2025-10-31 02:06:56,646 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:06:56,647 | INFO |    OK sentencia 1/3
+2025-10-31 02:06:56,649 | INFO |    OK sentencia 2/3
+2025-10-31 02:06:56,654 | INFO |    OK sentencia 3/3
+2025-10-31 02:06:56,654 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,655 | INFO | [24/24] Ejecutando: orocrm_channel_granular.sql
+2025-10-31 02:06:56,655 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:06:56,657 | INFO |    OK sentencia 1/2
+2025-10-31 02:06:56,663 | INFO |    OK sentencia 2/2
+2025-10-31 02:06:56,664 | INFO |    COMMIT (0.01s)
+2025-10-31 02:06:56,664 | INFO | Archivos ejecutados con éxito: 24/24
+2025-10-31 02:25:50,034 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-31 02:25:50,034 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-31 02:25:50,035 | INFO | Ejecutando 24 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-31 02:25:50,083 | INFO | [1/24] Ejecutando: oro_address_granular.sql
+2025-10-31 02:25:50,083 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,090 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,095 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,097 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,097 | INFO | [2/24] Ejecutando: oro_catalog_category_granular.sql
+2025-10-31 02:25:50,098 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,101 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,112 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,113 | INFO |    COMMIT (0.02s)
+2025-10-31 02:25:50,113 | INFO | [3/24] Ejecutando: oro_customer_granular.sql
+2025-10-31 02:25:50,114 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,118 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,127 | INFO |    OK sentencia 2/3
+2025-10-31 02:25:50,159 | INFO |    OK sentencia 3/3
+2025-10-31 02:25:50,160 | INFO |    COMMIT (0.05s)
+2025-10-31 02:25:50,161 | INFO | [4/24] Ejecutando: oro_customer_user_granular.sql
+2025-10-31 02:25:50,161 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,163 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,166 | INFO |    OK sentencia 2/3
+2025-10-31 02:25:50,175 | INFO |    OK sentencia 3/3
+2025-10-31 02:25:50,176 | INFO |    COMMIT (0.02s)
+2025-10-31 02:25:50,177 | INFO | [5/24] Ejecutando: oro_inventory_level_granular.sql
+2025-10-31 02:25:50,177 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,180 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,200 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,201 | INFO |    COMMIT (0.02s)
+2025-10-31 02:25:50,201 | INFO | [6/24] Ejecutando: oro_order_granular.sql
+2025-10-31 02:25:50,202 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,205 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,215 | INFO |    OK sentencia 2/3
+2025-10-31 02:25:50,240 | INFO |    OK sentencia 3/3
+2025-10-31 02:25:50,242 | INFO |    COMMIT (0.04s)
+2025-10-31 02:25:50,242 | INFO | [7/24] Ejecutando: oro_order_line_item_granular.sql
+2025-10-31 02:25:50,255 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,257 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,261 | INFO |    OK sentencia 2/3
+2025-10-31 02:25:50,267 | INFO |    OK sentencia 3/3
+2025-10-31 02:25:50,268 | INFO |    COMMIT (0.03s)
+2025-10-31 02:25:50,268 | INFO | [8/24] Ejecutando: oro_payment_status_granular.sql
+2025-10-31 02:25:50,269 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,271 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,274 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,274 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,275 | INFO | [9/24] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-31 02:25:50,290 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,293 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,295 | ERROR |    ROLLBACK por error en oro_payment_transaction_granular.sql: no existe la columna t.status
+LINE 16:   COALESCE(NULLIF(t.status, ''), 'Sin status')::varchar(255)...
+                           ^
+
+2025-10-31 02:25:50,296 | INFO | [10/24] Ejecutando: oro_price_list_granular.sql
+2025-10-31 02:25:50,296 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,298 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,301 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,301 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,301 | INFO | [11/24] Ejecutando: oro_price_product_granular.sql
+2025-10-31 02:25:50,302 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,303 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,305 | INFO |    OK sentencia 2/3
+2025-10-31 02:25:50,313 | INFO |    OK sentencia 3/3
+2025-10-31 02:25:50,314 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,314 | INFO | [12/24] Ejecutando: oro_product_granular.sql
+2025-10-31 02:25:50,315 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,317 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,322 | INFO |    OK sentencia 2/3
+2025-10-31 02:25:50,341 | INFO |    OK sentencia 3/3
+2025-10-31 02:25:50,342 | INFO |    COMMIT (0.03s)
+2025-10-31 02:25:50,342 | INFO | [13/24] Ejecutando: oro_product_unit_granular.sql
+2025-10-31 02:25:50,343 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,344 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,344 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,345 | INFO |    COMMIT (0.00s)
+2025-10-31 02:25:50,345 | INFO | [14/24] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-31 02:25:50,345 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,346 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,348 | INFO |    OK sentencia 2/3
+2025-10-31 02:25:50,353 | INFO |    OK sentencia 3/3
+2025-10-31 02:25:50,354 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,354 | INFO | [15/24] Ejecutando: oro_promotion_granular.sql
+2025-10-31 02:25:50,354 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,356 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,362 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,363 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,363 | INFO | [16/24] Ejecutando: oro_sale_quote_granular.sql
+2025-10-31 02:25:50,363 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,373 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,393 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,394 | INFO |    COMMIT (0.03s)
+2025-10-31 02:25:50,394 | INFO | [17/24] Ejecutando: oro_sale_quote_prod_offer_granular.sql
+2025-10-31 02:25:50,394 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,396 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,399 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,400 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,400 | INFO | [18/24] Ejecutando: oro_sale_quote_prod_request_granular.sql
+2025-10-31 02:25:50,400 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,402 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,405 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,406 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,406 | INFO | [19/24] Ejecutando: oro_sale_quote_product_granular.sql
+2025-10-31 02:25:50,407 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,410 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,413 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,414 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,414 | INFO | [20/24] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-31 02:25:50,415 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,416 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,419 | INFO |    OK sentencia 2/3
+2025-10-31 02:25:50,428 | INFO |    OK sentencia 3/3
+2025-10-31 02:25:50,429 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,429 | INFO | [21/24] Ejecutando: oro_tax_granular.sql
+2025-10-31 02:25:50,430 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,432 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,434 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,435 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,435 | INFO | [22/24] Ejecutando: oro_user_granular.sql
+2025-10-31 02:25:50,435 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,436 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,439 | INFO |    OK sentencia 2/3
+2025-10-31 02:25:50,444 | INFO |    OK sentencia 3/3
+2025-10-31 02:25:50,445 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,445 | INFO | [23/24] Ejecutando: oro_website_granular.sql
+2025-10-31 02:25:50,445 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:25:50,446 | INFO |    OK sentencia 1/3
+2025-10-31 02:25:50,448 | INFO |    OK sentencia 2/3
+2025-10-31 02:25:50,452 | INFO |    OK sentencia 3/3
+2025-10-31 02:25:50,453 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,453 | INFO | [24/24] Ejecutando: orocrm_channel_granular.sql
+2025-10-31 02:25:50,454 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:25:50,455 | INFO |    OK sentencia 1/2
+2025-10-31 02:25:50,461 | INFO |    OK sentencia 2/2
+2025-10-31 02:25:50,462 | INFO |    COMMIT (0.01s)
+2025-10-31 02:25:50,462 | INFO | Archivos ejecutados con éxito: 23/24
+2025-10-31 02:28:18,035 | INFO | Base de datos destino: etl_puntafina@localhost:5432/orocommerce
+2025-10-31 02:28:18,035 | INFO | Schema destino: dw_granular | Sources: public
+2025-10-31 02:28:18,035 | INFO | Ejecutando 24 archivo(s) desde C:\PuntaFina_DW_Oro\sql\granular
+2025-10-31 02:28:18,086 | INFO | [1/24] Ejecutando: oro_address_granular.sql
+2025-10-31 02:28:18,087 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,092 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,099 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,101 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,101 | INFO | [2/24] Ejecutando: oro_catalog_category_granular.sql
+2025-10-31 02:28:18,102 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,106 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,121 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,122 | INFO |    COMMIT (0.02s)
+2025-10-31 02:28:18,122 | INFO | [3/24] Ejecutando: oro_customer_granular.sql
+2025-10-31 02:28:18,124 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,129 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,137 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,164 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,165 | INFO |    COMMIT (0.04s)
+2025-10-31 02:28:18,165 | INFO | [4/24] Ejecutando: oro_customer_user_granular.sql
+2025-10-31 02:28:18,165 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,167 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,171 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,180 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,181 | INFO |    COMMIT (0.02s)
+2025-10-31 02:28:18,181 | INFO | [5/24] Ejecutando: oro_inventory_level_granular.sql
+2025-10-31 02:28:18,182 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,184 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,204 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,205 | INFO |    COMMIT (0.02s)
+2025-10-31 02:28:18,205 | INFO | [6/24] Ejecutando: oro_order_granular.sql
+2025-10-31 02:28:18,205 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,208 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,216 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,237 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,237 | INFO |    COMMIT (0.03s)
+2025-10-31 02:28:18,237 | INFO | [7/24] Ejecutando: oro_order_line_item_granular.sql
+2025-10-31 02:28:18,238 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,239 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,242 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,249 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,249 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,250 | INFO | [8/24] Ejecutando: oro_payment_status_granular.sql
+2025-10-31 02:28:18,250 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,251 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,256 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,256 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,257 | INFO | [9/24] Ejecutando: oro_payment_transaction_granular.sql
+2025-10-31 02:28:18,272 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,275 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,280 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,298 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,299 | INFO |    COMMIT (0.04s)
+2025-10-31 02:28:18,299 | INFO | [10/24] Ejecutando: oro_price_list_granular.sql
+2025-10-31 02:28:18,300 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,302 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,304 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,305 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,305 | INFO | [11/24] Ejecutando: oro_price_product_granular.sql
+2025-10-31 02:28:18,306 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,307 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,311 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,321 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,321 | INFO |    COMMIT (0.02s)
+2025-10-31 02:28:18,321 | INFO | [12/24] Ejecutando: oro_product_granular.sql
+2025-10-31 02:28:18,322 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,325 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,330 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,345 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,346 | INFO |    COMMIT (0.02s)
+2025-10-31 02:28:18,346 | INFO | [13/24] Ejecutando: oro_product_unit_granular.sql
+2025-10-31 02:28:18,347 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,348 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,348 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,349 | INFO |    COMMIT (0.00s)
+2025-10-31 02:28:18,349 | INFO | [14/24] Ejecutando: oro_promotion_applied_discount_granular.sql
+2025-10-31 02:28:18,350 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,351 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,354 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,358 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,359 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,359 | INFO | [15/24] Ejecutando: oro_promotion_granular.sql
+2025-10-31 02:28:18,360 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,362 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,367 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,368 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,368 | INFO | [16/24] Ejecutando: oro_sale_quote_granular.sql
+2025-10-31 02:28:18,368 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,378 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,398 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,399 | INFO |    COMMIT (0.03s)
+2025-10-31 02:28:18,399 | INFO | [17/24] Ejecutando: oro_sale_quote_prod_offer_granular.sql
+2025-10-31 02:28:18,399 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,401 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,404 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,404 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,405 | INFO | [18/24] Ejecutando: oro_sale_quote_prod_request_granular.sql
+2025-10-31 02:28:18,405 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,407 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,410 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,410 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,410 | INFO | [19/24] Ejecutando: oro_sale_quote_product_granular.sql
+2025-10-31 02:28:18,411 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,414 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,418 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,419 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,419 | INFO | [20/24] Ejecutando: oro_shipping_product_opts_granular.sql
+2025-10-31 02:28:18,420 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,421 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,425 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,434 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,434 | INFO |    COMMIT (0.02s)
+2025-10-31 02:28:18,435 | INFO | [21/24] Ejecutando: oro_tax_granular.sql
+2025-10-31 02:28:18,435 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,437 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,439 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,439 | INFO |    COMMIT (0.00s)
+2025-10-31 02:28:18,440 | INFO | [22/24] Ejecutando: oro_user_granular.sql
+2025-10-31 02:28:18,440 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,441 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,445 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,454 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,455 | INFO |    COMMIT (0.02s)
+2025-10-31 02:28:18,456 | INFO | [23/24] Ejecutando: oro_website_granular.sql
+2025-10-31 02:28:18,456 | INFO |    Sentencias detectadas: 3
+2025-10-31 02:28:18,457 | INFO |    OK sentencia 1/3
+2025-10-31 02:28:18,459 | INFO |    OK sentencia 2/3
+2025-10-31 02:28:18,463 | INFO |    OK sentencia 3/3
+2025-10-31 02:28:18,464 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,464 | INFO | [24/24] Ejecutando: orocrm_channel_granular.sql
+2025-10-31 02:28:18,464 | INFO |    Sentencias detectadas: 2
+2025-10-31 02:28:18,467 | INFO |    OK sentencia 1/2
+2025-10-31 02:28:18,470 | INFO |    OK sentencia 2/2
+2025-10-31 02:28:18,471 | INFO |    COMMIT (0.01s)
+2025-10-31 02:28:18,471 | INFO | Archivos ejecutados con éxito: 24/24

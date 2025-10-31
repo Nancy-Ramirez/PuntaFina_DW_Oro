@@ -1,6 +1,6 @@
-DROP VIEW IF EXISTS vw_oro_customer_granular;
+DROP VIEW IF EXISTS oro_customer_granular;
 
-CREATE VIEW vw_oro_customer_granular AS
+CREATE VIEW oro_customer_granular AS
 SELECT
     /* === columnas originales + su detalle a la par === */
     c.id,
@@ -50,4 +50,4 @@ LEFT JOIN oro_tax_customer_tax_code t ON t.id  = c.taxcode_id
 LEFT JOIN orocrm_account          a   ON a.id  = c.previous_account_id
 LEFT JOIN orocrm_channel          ch  ON ch.id = c.datachannel_id;
 
-SELECT * FROM vw_oro_customer_granular;
+SELECT * FROM oro_customer_granular;

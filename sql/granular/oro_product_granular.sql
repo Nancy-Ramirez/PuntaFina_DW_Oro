@@ -1,6 +1,6 @@
 DROP VIEW IF EXISTS oro_product_granular;
 
-CREATE VIEW vw_oro_product_granular AS
+CREATE VIEW oro_product_granular AS
 SELECT
     /* === columnas originales, en el mismo orden === */
     p.id,

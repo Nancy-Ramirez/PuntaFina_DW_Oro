@@ -1,6 +1,8 @@
-DROP VIEW IF EXISTS vw_oro_product_granular;
+-- LIMPIAR SI EXISTE EN TU ESQUEMA DE TRABAJO
+DROP VIEW IF EXISTS dw_granular.oro_product_granular CASCADE;
 
-CREATE VIEW vw_oro_product_granular AS
+-- CREAR EN TU ESQUEMA PROPIO (NO EN public)
+CREATE OR REPLACE VIEW dw_granular.oro_product_granular AS
 SELECT
     /* === columnas originales, en el mismo orden === */
     p.id,
