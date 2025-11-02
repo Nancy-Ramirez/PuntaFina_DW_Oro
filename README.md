@@ -46,7 +46,7 @@ PuntaFina_DW_Oro/
    # 4) Calidad
    python scripts/quality_checks.py
    ```
-4. Los resultados aparecerán en `data/outputs/parquet/` (y `csv/` si activas export en `settings.yaml`).
+4. Los resultados aparecerán en `data/outputs/parquet/` y `csv/`.
 
 ## Checklists
 - **Dimensiones**: dim_producto, dim_cliente, dim_usuario, dim_sitio_web, dim_canal, dim_precio_lista, dim_promocion, dim_pago, dim_fecha.
@@ -58,5 +58,4 @@ PuntaFina_DW_Oro/
   - Dominio de estatus/métodos de pago conocido.
 
 ## Notas
-- Mantén nombres sencillos y auto‑explicativos.
-- Si faltan tablas (envío, almacenes, etc.), usa “N/A” como valor por defecto y documenta en `docs/diccionario_campos.md`.
+- Mantengamos nombres sencillos y legibles.
