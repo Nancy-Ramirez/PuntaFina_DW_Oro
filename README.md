@@ -115,3 +115,26 @@ El data warehouse habilita análisis de:
 - Efectividad promocional: Medición de impacto de descuentos
 - Tendencias temporales: Historial de transacciones multi-año
 
+## Estructura de Archivos
+
+```
+PuntaFina_DW_Oro/
+├── scripts/                 # Scripts del pipeline ETL
+├── config/                  # Archivos de configuración
+├── data/outputs/           # Archivos Parquet y CSV generados
+├── docs/                   # Documentación y diccionario de datos
+├── logs/                   # Logs de ejecución
+└── sql/                    # Consultas SQL de referencia
+```
+
+## Registro y Monitoreo
+
+Todas las ejecuciones del pipeline generan logs detallados en el directorio `logs/`. Los archivos de log incluyen timestamps, conteos de registros, métricas de calidad de datos y detalles de errores para resolución de problemas y propósitos de auditoría.
+
+## Mantenimiento
+
+El sistema está diseñado para operación automatizada con requerimientos mínimos de mantenimiento. El enfoque de carga incremental reduce el tiempo de procesamiento para actualizaciones rutinarias mientras preserva el historial de datos para continuidad analítica.
+- **15 Foreign Keys** en fact_ventas
+- **Índices optimizados** para consultas BI
+
+¡Listo para conectar Power BI, Tableau o cualquier herramienta de análisis!
