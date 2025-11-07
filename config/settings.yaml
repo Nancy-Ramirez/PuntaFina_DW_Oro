@@ -1,10 +1,16 @@
-# Configuración simple del proyecto
+# Configuración del Data Warehouse - Modelo Estrella Unificado
+# CONECTADO A DATOS REALES DE OROCOMMERCE
 exportar_parquet: true
 exportar_csv: true
 salida_parquet: "data/outputs/parquet"
 salida_csv: "data/outputs/csv"
 logs_dir: "logs"
+
+# Configuración para modelo dimensional unificado
+# Una sola tabla de hechos + múltiples dimensiones
 incremental:
-  orders: true
-  order_lines: true
-  payments: true
+  ventas: true  # fact_ventas unificada con datos reales
+  
+# Esquemas de la base de datos (usando datos reales)
+schema_destino: "public"
+source_schemas: ["public"]
