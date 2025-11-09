@@ -77,12 +77,43 @@ def save_dimension(df, name):
     print(f"   OK {name}: {len(df):,} registros -> {parquet_file.name}, {csv_file.name}")
     return len(df)
 
+def is_feriado(fecha):
+    """Determina si una fecha es feriado oficial de El Salvador"""
+    mes = fecha.month
+    dia = fecha.day
+    año = fecha.year
+    
+    # Feriados fijos de El Salvador
+    feriados_fijos = [
+        (1, 1),   # Año Nuevo
+        (5, 1),   # Día Internacional del Trabajo
+        (5, 10),  # Día de la Madre
+        (6, 17),  # Día del Padre
+        (8, 6),   # Día de El Salvador (Fiestas Agostinas)
+        (9, 15),  # Día de la Independencia
+        (11, 2),  # Día de los Difuntos
+        (12, 25), # Navidad
+    ]
+    
+    if (mes, dia) in feriados_fijos:
+        return True
+
+    if mes == 3 or mes == 4:
+        # Semana Santa suele caer entre marzo y abril
+        # Esta es una aproximación - en producción usarías una librería de fechas religiosas
+        if (mes == 3 and dia >= 25) or (mes == 4 and dia <= 15):
+            # Verificar si es jueves, viernes o sábado en este rango
+            if fecha.weekday() in [3, 4, 5]:  # jueves=3, viernes=4, sábado=5
+                return True
+    
+    return False
+
 def build_dim_fecha():
     """Construye dimensión de fechas (calendario completo)"""
     print("Construyendo dim_fecha...")
     
-    # Rango de fechas: 2024-2025
-    start_date = datetime(2024, 1, 1)
+    # Rango de fechas: 2023-2025 (para cubrir todos los datos)
+    start_date = datetime(2023, 1, 1)
     end_date = datetime(2025, 12, 31)
     
     dates = []
@@ -101,7 +132,7 @@ def build_dim_fecha():
             'trimestre': (current.month - 1) // 3 + 1,
             'semana_año': current.isocalendar()[1],
             'es_fin_semana': current.weekday() >= 5,
-            'es_feriado': False  # Se puede personalizar
+            'es_feriado': is_feriado(current),
         })
         current += timedelta(days=1)
     

@@ -95,7 +95,7 @@ def build_fact_ventas():
         o.identifier as numero_orden,
         
         -- Campos para mapear a otras dimensiones
-        'SIN_PROMO' as id_promocion,  -- Se corregirá después
+        '0' as id_promocion,  -- Se corregirá después
         '1' as id_canal,              -- Se asignará después
         NULL as id_direccion,         -- Se asignará después  
         '1' as id_envio,              -- Se asignará después
@@ -166,7 +166,7 @@ def build_fact_ventas():
         '4': 0.20,   # 20% descuento
         '5': 0.25,   # 25% descuento
         '6': 0.30,   # 30% descuento
-        'SIN_PROMO': 0.0  # Sin descuento
+        '0': 0.0  # Sin descuento
     }
     
     # Aplicar descuentos
