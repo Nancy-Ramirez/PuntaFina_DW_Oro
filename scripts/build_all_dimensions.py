@@ -330,6 +330,20 @@ def build_dim_direccion():
     df = pd.read_sql(query, conn)
     conn.close()
     
+    # Agregar dirección por defecto con id_direccion = '0'
+    direccion_default = pd.DataFrame([{
+        'id_direccion': '0',
+        'calle': 'Sin Especificar',
+        'ciudad': 'Sin Especificar', 
+        'codigo_postal': '00000',
+        'region': 'Sin Especificar',
+        'pais_codigo': 'US',
+        'direccion_completa': 'Dirección no especificada',
+        'estado': 'Activa'
+    }])
+    
+    df = pd.concat([direccion_default, df], ignore_index=True)
+    
     return save_dimension(df, "dim_direccion")
 
 def build_dim_envio():
@@ -466,6 +480,18 @@ def build_dim_promocion():
     
     df = pd.read_sql(query, conn)
     conn.close()
+    
+    # Agregar promoción por defecto 'SIN_PROMO'
+    sin_promo_row = pd.DataFrame([{
+        'id_promocion': 'SIN_PROMO',
+        'nombre_promocion': 'Sin Promoción',
+        'descripcion': 'Sin promoción aplicada',
+        'descuento_monto': 0.0,
+        'tipo_descuento': 'none',
+        'estado': 'Activa'
+    }])
+    
+    df = pd.concat([df, sin_promo_row], ignore_index=True)
     
     return save_dimension(df, "dim_promocion")
 

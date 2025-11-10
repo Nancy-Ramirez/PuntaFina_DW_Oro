@@ -95,9 +95,9 @@ def build_fact_ventas():
         o.identifier as numero_orden,
         
         -- Campos para mapear a otras dimensiones
-        '0' as id_promocion,  -- Se corregirá después
+        'SIN_PROMO' as id_promocion,  -- Se corregirá después
         '1' as id_canal,              -- Se asignará después
-        NULL as id_direccion,         -- Se asignará después  
+        '0' as id_direccion,         -- Se asignará después  
         '1' as id_envio,              -- Se asignará después
         '1' as id_impuestos,          -- Se asignará después
         '1' as id_pago,               -- Se asignará después
@@ -108,6 +108,7 @@ def build_fact_ventas():
     INNER JOIN oro_order o ON oli.order_id = o.id
     WHERE oli.id IS NOT NULL 
       AND o.id IS NOT NULL
+      AND oli.product_id IS NOT NULL
       AND oli.quantity > 0
       AND oli.value > 0
     ORDER BY o.created_at DESC, oli.id
@@ -130,6 +131,24 @@ def build_fact_ventas():
     for col in string_cols:
         if col in df.columns:
             df[col] = df[col].astype(str).astype('category')
+    
+    # Validar y limpiar registros con FKs nulas
+    print("   Validando integridad de Foreign Keys...")
+    initial_count = len(df)
+    
+    # Eliminar registros con id_producto nulo o vacío
+    df = df.dropna(subset=['id_producto'])
+    df = df[df['id_producto'] != '']
+    df = df[df['id_producto'] != 'nan']
+    
+    # Eliminar registros con id_cliente nulo
+    df = df.dropna(subset=['id_cliente'])
+    df = df[df['id_cliente'] != '']
+    df = df[df['id_cliente'] != 'nan']
+    
+    removed_count = initial_count - len(df)
+    if removed_count > 0:
+        print(f"   ADVERTENCIA: Se eliminaron {removed_count:,} registros con FKs nulas")
     
     print("   OK Tipos de datos optimizados")
     
@@ -166,7 +185,7 @@ def build_fact_ventas():
         '4': 0.20,   # 20% descuento
         '5': 0.25,   # 25% descuento
         '6': 0.30,   # 30% descuento
-        '0': 0.0  # Sin descuento
+        'SIN_PROMO': 0.0  # Sin descuento
     }
     
     # Aplicar descuentos
