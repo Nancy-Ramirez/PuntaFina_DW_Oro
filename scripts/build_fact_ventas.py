@@ -97,7 +97,7 @@ def build_fact_ventas():
         -- Campos para mapear a otras dimensiones
         'SIN_PROMO' as id_promocion,  -- Se corregirá después
         '1' as id_canal,              -- Se asignará después
-        '0' as id_direccion,         -- Se asignará después  
+        COALESCE(o.shipping_address_id, o.billing_address_id, 0)::text as id_direccion,  -- Usar dirección de envío o facturación  
         '1' as id_envio,              -- Se asignará después
         '1' as id_impuestos,          -- Se asignará después
         '1' as id_pago,               -- Se asignará después
@@ -172,6 +172,32 @@ def build_fact_ventas():
     promo_mask = np.random.random(len(df)) < 0.1
     df.loc[promo_mask, 'id_promocion'] = np.random.choice(['1', '2', '3', '4', '5', '6'], size=promo_mask.sum())
     
+    # Validar direcciones válidas contra dim_direccion
+    print("   Validando direcciones contra dim_direccion...")
+    
+    # Obtener direcciones válidas de la base de datos
+    valid_addresses_query = """
+    SELECT DISTINCT id::text as id_direccion 
+    FROM oro_address 
+    WHERE id IS NOT NULL
+    UNION 
+    SELECT '0' as id_direccion  -- Incluir dirección por defecto
+    """
+    
+    valid_addresses_df = pd.read_sql(valid_addresses_query, conn)
+    valid_address_ids = set(valid_addresses_df['id_direccion'].astype(str))
+    
+    # Contar direcciones inválidas antes de la corrección
+    invalid_addresses = df[~df['id_direccion'].isin(valid_address_ids)]
+    invalid_count = len(invalid_addresses)
+    
+    if invalid_count > 0:
+        print(f"   ADVERTENCIA: {invalid_count:,} registros con direcciones inválidas, asignando dirección por defecto (0)")
+        # Asignar dirección por defecto a direcciones inválidas
+        df.loc[~df['id_direccion'].isin(valid_address_ids), 'id_direccion'] = '0'
+    
+    print("   OK Direcciones validadas")
+    
     print("   OK Foreign Keys asignados")
     
     # Calcular descuentos por promociones
@@ -196,6 +222,9 @@ def build_fact_ventas():
     
     # Calcular total después del descuento
     df['total_linea_neto'] = df['total_linea'] - df['descuento_promocion']
+    
+    # Calcular total_orden como total_linea - descuento_promocion (igual que total_linea_neto)
+    df['total_orden'] = df['total_linea_neto']
     
     print(f"   OK Descuentos aplicados: ${df['descuento_promocion'].sum():,.2f} total")
     

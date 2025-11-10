@@ -299,7 +299,7 @@ def build_dim_canal():
     return save_dimension(df, "dim_canal")
 
 def build_dim_direccion():
-    """Construye dimensión de direcciones"""
+    """Construye dimensión de direcciones desde oro_order_address"""
     print("Construyendo dim_direccion...")
     
     conn = get_oro_connection()
@@ -311,7 +311,7 @@ def build_dim_direccion():
         COALESCE(a.city, 'Ciudad') as ciudad,
         COALESCE(a.postal_code, '00000') as codigo_postal,
         COALESCE(a.region_text, 'Región') as region,
-        'US' as pais_codigo,
+        COALESCE(a.country_code, 'SV') as pais_codigo,
         CONCAT(
             COALESCE(a.street, 'Calle Sin Nombre'), ', ',
             COALESCE(a.city, 'Ciudad'), ', ',
@@ -322,7 +322,7 @@ def build_dim_direccion():
             WHEN a.id IS NOT NULL THEN 'Activa'
             ELSE 'Inactiva'
         END as estado
-    FROM oro_address a
+    FROM oro_order_address a
     WHERE a.id IS NOT NULL
     ORDER BY id_direccion
     """
@@ -337,7 +337,7 @@ def build_dim_direccion():
         'ciudad': 'Sin Especificar', 
         'codigo_postal': '00000',
         'region': 'Sin Especificar',
-        'pais_codigo': 'US',
+        'pais_codigo': 'SV',
         'direccion_completa': 'Dirección no especificada',
         'estado': 'Activa'
     }])
