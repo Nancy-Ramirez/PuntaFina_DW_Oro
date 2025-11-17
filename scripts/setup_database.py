@@ -240,7 +240,11 @@ def create_all_tables():
                 precio_unitario NUMERIC(10,2) NOT NULL,
                 total_linea NUMERIC(15,2) NOT NULL,
                 moneda TEXT NOT NULL,
-                unidad TEXT NOT NULL
+                unidad TEXT NOT NULL,
+                stock_actual NUMERIC(10,2) NOT NULL DEFAULT 0.0,
+                stock_disponible NUMERIC(10,2) NOT NULL DEFAULT 0.0,
+                stock_despues_venta NUMERIC(10,2) NOT NULL DEFAULT 0.0,
+                estado_stock TEXT NOT NULL DEFAULT 'Sin Información'
             )
         """,
         
@@ -265,13 +269,17 @@ def create_all_tables():
                 cantidad NUMERIC(10,2) NOT NULL,
                 precio_unitario NUMERIC(10,2) NOT NULL,
                 total_linea NUMERIC(15,2) NOT NULL,
-                descuento_promocion NUMERIC(15,2) NOT NULL DEFAULT 0.0,
-                total_linea_neto NUMERIC(15,2) NOT NULL DEFAULT 0.0,
                 subtotal_orden NUMERIC(15,2) NOT NULL,
                 total_orden NUMERIC(15,2) NOT NULL,
+                descuento_promocion NUMERIC(15,2) NOT NULL DEFAULT 0.0,
+                fecha_venta TIMESTAMP NOT NULL,
                 moneda TEXT NOT NULL,
                 numero_po TEXT,
                 numero_orden TEXT,
+                stock_actual NUMERIC(10,2) NOT NULL DEFAULT 0.0,
+                stock_inicial NUMERIC(10,2) NOT NULL DEFAULT 0.0,
+                stock_restante NUMERIC(10,2) NOT NULL DEFAULT 0.0,
+                total_linea_neto NUMERIC(15,2) NOT NULL DEFAULT 0.0,
                 UNIQUE (id_line_item, id_order),
                 
                 -- Foreign Keys hacia dimensiones
@@ -304,10 +312,22 @@ def create_all_tables():
     conn = get_dw_connection()
     with conn.cursor() as cur:
         try:
+            # Columnas adicionales en fact_ventas
             cur.execute("ALTER TABLE fact_ventas ADD COLUMN IF NOT EXISTS descuento_promocion NUMERIC(15,2) NOT NULL DEFAULT 0.0")
             cur.execute("ALTER TABLE fact_ventas ADD COLUMN IF NOT EXISTS total_linea_neto NUMERIC(15,2) NOT NULL DEFAULT 0.0")
+            cur.execute("ALTER TABLE fact_ventas ADD COLUMN IF NOT EXISTS fecha_venta TIMESTAMP")
+            cur.execute("ALTER TABLE fact_ventas ADD COLUMN IF NOT EXISTS stock_actual NUMERIC(10,2) NOT NULL DEFAULT 0.0")
+            cur.execute("ALTER TABLE fact_ventas ADD COLUMN IF NOT EXISTS stock_inicial NUMERIC(10,2) NOT NULL DEFAULT 0.0")
+            cur.execute("ALTER TABLE fact_ventas ADD COLUMN IF NOT EXISTS stock_restante NUMERIC(10,2) NOT NULL DEFAULT 0.0")
+            
+            # Columnas adicionales en dim_line_item para stock dinámico
+            cur.execute("ALTER TABLE dim_line_item ADD COLUMN IF NOT EXISTS stock_actual NUMERIC(10,2) NOT NULL DEFAULT 0.0")
+            cur.execute("ALTER TABLE dim_line_item ADD COLUMN IF NOT EXISTS stock_disponible NUMERIC(10,2) NOT NULL DEFAULT 0.0")
+            cur.execute("ALTER TABLE dim_line_item ADD COLUMN IF NOT EXISTS stock_despues_venta NUMERIC(10,2) NOT NULL DEFAULT 0.0")
+            cur.execute("ALTER TABLE dim_line_item ADD COLUMN IF NOT EXISTS estado_stock TEXT NOT NULL DEFAULT 'Sin Información'")
+            
             conn.commit()
-            print("    Columnas adicionales en fact_ventas verificadas/creadas")
+            print("    Columnas adicionales en fact_ventas y dim_line_item verificadas/creadas")
         except Exception:
             conn.rollback()
     conn.close()

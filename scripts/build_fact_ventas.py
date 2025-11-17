@@ -57,6 +57,66 @@ def save_fact_table(df, name):
     print(f"   OK {name}: {len(df):,} registros -> {parquet_file.name}, {csv_file.name}")
     return len(df)
 
+def add_dynamic_stock_columns(df, conn):
+    """
+    Agrega columnas de stock dinámico a fact_ventas con algoritmo súper optimizado:
+    - stock_inicial: Stock que había al momento de la venta
+    - stock_restante: Stock que quedó después de la venta 
+    - stock_actual: Stock actual (referencia)
+    """
+    
+    print("      Obteniendo stock actual por producto...")
+    
+    # Obtener stock actual de todos los productos
+    stock_query = """
+    SELECT 
+        il.product_id,
+        COALESCE(il.quantity, 0) as stock_actual
+    FROM public.oro_inventory_level il
+    WHERE il.product_id IS NOT NULL
+    """
+    
+    df_stock = pd.read_sql(stock_query, conn)
+    df_stock['product_id'] = df_stock['product_id'].astype(str)
+    
+    print(f"      Stock obtenido para {len(df_stock):,} productos")
+    
+    # Merge con el dataframe principal
+    df = df.merge(df_stock, left_on='id_producto', right_on='product_id', how='left')
+    df['stock_actual'] = df['stock_actual'].fillna(0)
+    
+    print("      Calculando stock dinámico optimizado...")
+    
+    # Asegurar que fecha_venta esté en formato datetime
+    df['fecha_venta'] = pd.to_datetime(df['fecha_venta'])
+    
+    # Ordenar por producto y fecha (crucial para el algoritmo)
+    df = df.sort_values(['id_producto', 'fecha_venta'], ascending=[True, False])
+    
+    # ALGORITMO OPTIMIZADO: Calcular running sum hacia atrás por grupo
+    print("      Aplicando running sum vectorizado...")
+    
+    # Agrupar por producto y calcular suma acumulativa inversa (hacia atrás)
+    df['ventas_posteriores'] = df.groupby('id_producto')['cantidad'].cumsum() - df['cantidad']
+    
+    # Calcular stock inicial y restante (vectorizado)
+    df['stock_inicial'] = df['stock_actual'] + df['ventas_posteriores']
+    df['stock_restante'] = df['stock_inicial'] - df['cantidad']
+    
+    # Asegurar que no haya stocks negativos
+    df['stock_inicial'] = df['stock_inicial'].clip(lower=0)
+    df['stock_restante'] = df['stock_restante'].clip(lower=0)
+    
+    # Restaurar orden original por fecha ascendente
+    df = df.sort_values(['fecha_venta', 'id_line_item'])
+    
+    # Limpiar columnas auxiliares
+    df = df.drop(['product_id', 'ventas_posteriores'], axis=1)
+    
+    print(f"      Stock dinámico calculado para {len(df):,} registros (OPTIMIZADO)")
+    
+    return df
+
 def build_fact_ventas():
     """Construye la tabla de hechos principal fact_ventas"""
     print("Construyendo fact_ventas...")
@@ -88,6 +148,9 @@ def build_fact_ventas():
         
         -- Inicializar descuento promocion (se calculará después)
         0.0 as descuento_promocion,
+        
+        -- Fecha completa para cálculos de stock
+        o.created_at as fecha_venta,
         
         -- Información adicional para FKs
         oli.currency as moneda,
@@ -126,15 +189,15 @@ def build_fact_ventas():
     for col in numeric_cols:
         df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
     
-    # Convertir strings a category para optimizar memoria (excepto id_promocion que se modifica después)
-    string_cols = ['id_cliente', 'id_producto', 'id_usuario', 'id_sitio_web', 'moneda']
-    for col in string_cols:
-        if col in df.columns:
-            df[col] = df[col].astype(str).astype('category')
-    
     # Validar y limpiar registros con FKs nulas
     print("   Validando integridad de Foreign Keys...")
     initial_count = len(df)
+    
+    # PRIMERO corregir id_usuario ANTES de convertir a categorical
+    df['id_usuario'] = df['id_usuario'].fillna('')
+    df.loc[df['id_usuario'] == '', 'id_usuario'] = ''
+    df.loc[df['id_usuario'] == 'nan', 'id_usuario'] = ''
+    df.loc[df['id_usuario'].isna(), 'id_usuario'] = ''
     
     # Eliminar registros con id_producto nulo o vacío
     df = df.dropna(subset=['id_producto'])
@@ -150,6 +213,12 @@ def build_fact_ventas():
     if removed_count > 0:
         print(f"   ADVERTENCIA: Se eliminaron {removed_count:,} registros con FKs nulas")
     
+    # AHORA convertir strings a category DESPUÉS de limpiar
+    string_cols = ['id_cliente', 'id_producto', 'id_usuario', 'id_sitio_web', 'moneda']
+    for col in string_cols:
+        if col in df.columns:
+            df[col] = df[col].astype(str).astype('category')
+
     print("   OK Tipos de datos optimizados")
     
     # Asignar FKs dinámicamente basados en los datos
@@ -199,6 +268,11 @@ def build_fact_ventas():
     print("   OK Direcciones validadas")
     
     print("   OK Foreign Keys asignados")
+    
+    # Calcular stock dinámico
+    print("   Calculando stock dinámico por producto...")
+    df = add_dynamic_stock_columns(df, conn)
+    print("   OK Stock dinámico calculado")
     
     # Calcular descuentos por promociones
     print("   Calculando descuentos por promociones...")

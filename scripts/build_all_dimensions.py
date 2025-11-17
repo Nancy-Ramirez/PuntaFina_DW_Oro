@@ -19,6 +19,8 @@ Dimensiones incluidas:
 - dim_impuestos (configuración fiscal)
 - dim_promocion (promociones y descuentos)
 - dim_line_item (items de línea únicos)
+
+NOTA: Inventario/Stock se maneja dinámicamente en fact_ventas
 """
 
 import os
@@ -27,6 +29,8 @@ import numpy as np
 from datetime import datetime, timedelta
 from pathlib import Path
 import yaml
+import psycopg2
+from dotenv import load_dotenv
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -217,6 +221,20 @@ def build_dim_usuario():
         u.createdat::date as fecha_creacion
     FROM oro_user u
     WHERE u.id IS NOT NULL
+    
+    UNION ALL
+    
+    -- Usuario por defecto para FKs huérfanas
+    SELECT 
+        '' as id_usuario,
+        'usuario_defecto' as username,
+        'defecto@oro.local' as email,
+        'Usuario' as nombre,
+        'Por Defecto' as apellido,
+        'Usuario Por Defecto' as nombre_completo,
+        'Activo' as estado,
+        CURRENT_DATE as fecha_creacion
+        
     ORDER BY id_usuario
     """
     
@@ -529,8 +547,95 @@ def build_dim_orden():
     
     return save_dimension(df, "dim_orden")
 
+def add_dynamic_stock_to_line_item(df, conn):
+    """
+    Agrega columnas de stock dinámico a dim_line_item con algoritmo optimizado:
+    - stock_disponible: Stock que había al momento del pedido
+    - stock_despues_venta: Stock que quedó después de procesar este line item
+    - stock_actual: Stock actual (referencia)
+    """
+    
+    print("      Obteniendo stock actual por producto...")
+    
+    # Obtener stock actual de todos los productos
+    stock_query = """
+    SELECT 
+        il.product_id,
+        COALESCE(il.quantity, 0) as stock_actual
+    FROM public.oro_inventory_level il
+    WHERE il.product_id IS NOT NULL
+    """
+    
+    df_stock = pd.read_sql(stock_query, conn)
+    df_stock['product_id'] = df_stock['product_id'].astype(str)
+    
+    print(f"      Stock obtenido para {len(df_stock):,} productos")
+    
+    # Merge con el dataframe principal
+    df = df.merge(df_stock, left_on='id_producto', right_on='product_id', how='left')
+    df['stock_actual'] = df['stock_actual'].fillna(0)
+    
+    print("      Calculando stock dinámico optimizado para line items...")
+    
+    # Obtener fechas de órdenes para ordenamiento cronológico
+    order_dates_query = """
+    SELECT 
+        o.id::text as id_orden,
+        o.created_at as fecha_orden
+    FROM oro_order o
+    WHERE o.id IS NOT NULL
+    """
+    
+    df_dates = pd.read_sql(order_dates_query, conn)
+    df = df.merge(df_dates, on='id_orden', how='left')
+    
+    # Asegurar que fecha_orden esté en formato datetime
+    df['fecha_orden'] = pd.to_datetime(df['fecha_orden'])
+    
+    # Ordenar por producto y fecha (crucial para el algoritmo)
+    df = df.sort_values(['id_producto', 'fecha_orden'], ascending=[True, False])
+    
+    # ALGORITMO OPTIMIZADO: Calcular running sum hacia atrás por grupo
+    print("      Aplicando running sum vectorizado para line items...")
+    
+    # Agrupar por producto y calcular suma acumulativa inversa (hacia atrás)
+    df['ventas_posteriores'] = df.groupby('id_producto')['cantidad'].cumsum() - df['cantidad']
+    
+    # Calcular stock disponible y stock después de la venta (vectorizado)
+    df['stock_disponible'] = df['stock_actual'] + df['ventas_posteriores']
+    df['stock_despues_venta'] = df['stock_disponible'] - df['cantidad']
+    
+    # Asegurar que no haya stocks negativos
+    df['stock_disponible'] = df['stock_disponible'].clip(lower=0)
+    df['stock_despues_venta'] = df['stock_despues_venta'].clip(lower=0)
+    
+    # Calcular estado de stock en el momento de la venta
+    def categorize_stock_status(stock_val):
+        if stock_val == 0:
+            return 'Sin Stock'
+        elif stock_val <= 10:
+            return 'Stock Crítico'
+        elif stock_val <= 50:
+            return 'Stock Bajo'
+        elif stock_val <= 200:
+            return 'Stock Normal'
+        else:
+            return 'Stock Alto'
+    
+    df['estado_stock'] = df['stock_disponible'].apply(categorize_stock_status)
+    
+    # Restaurar orden original por id_line_item
+    df = df.sort_values(['id_line_item'])
+    
+    # Limpiar columnas auxiliares
+    df = df.drop(['product_id', 'ventas_posteriores', 'fecha_orden'], axis=1)
+    
+    print(f"      Stock dinámico calculado para {len(df):,} line items (OPTIMIZADO)")
+    
+    return df
+
 def build_dim_line_item():
-    """Construye dimensión de line items"""
+    """Construye dimensión de line items con stock dinámico integrado"""
     print("Construyendo dim_line_item...")
     
     conn = get_oro_connection()
@@ -555,9 +660,17 @@ def build_dim_line_item():
     """
     
     df = pd.read_sql(query, conn)
+    
+    # Agregar stock dinámico 
+    print("   Calculando stock dinámico por line item...")
+    df = add_dynamic_stock_to_line_item(df, conn)
+    print("   OK Stock dinámico agregado a line items")
+    
     conn.close()
     
     return save_dimension(df, "dim_line_item")
+
+
 
 def main():
     """Función principal que construye todas las dimensiones"""

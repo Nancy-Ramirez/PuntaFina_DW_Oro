@@ -4,12 +4,13 @@ ORQUESTADOR MAESTRO - PIPELINE COMPLETO DE DATA WAREHOUSE
 =========================================================
 Ejecuta todo el pipeline del Data Warehouse de manera secuencial y coordinada:
 
-1.   Construccin de Dimensiones (build_all_dimensions.py)
-2.  Construccin de Fact Table (build_fact_ventas.py)  
-3.   Configuracin de Base de Datos (setup_database.py)
-4.  Validacin y Reporte Final
+1. Construcción de Dimensiones (build_all_dimensions.py) - INCLUYE dim_inventario
+2. Construcción de Fact Table (build_fact_ventas.py)  
+3. Configuración de Base de Datos (setup_database.py)
+4. Validación y Reporte Final
 
-Incluye manejo de errores, logging detallado y capacidad de re-ejecucin.
+Incluye manejo de errores, logging detallado y capacidad de re-ejecución.
+Para modelo dimensional completo - Tesis de grado.
 """
 
 import os
@@ -139,9 +140,9 @@ class DataWarehouseOrchestrator:
         
         # Pipeline steps
         pipeline_steps = [
-            ("build_all_dimensions.py", "Construccin de todas las dimensiones"),
-            ("build_fact_ventas.py", "Construccin de tabla de hechos fact_ventas"),
-            ("setup_database.py", "Configuracin completa de base de datos")
+            ("build_all_dimensions.py", "Construcción de todas las dimensiones (incluye inventario)"),
+            ("build_fact_ventas.py", "Construcción de tabla de hechos fact_ventas"),
+            ("setup_database.py", "Configuración completa de base de datos")
         ]
         
         success_count = 0
