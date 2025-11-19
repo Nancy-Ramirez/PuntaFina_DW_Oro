@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SCRIPT UNIFICADO: GESTIN COMPLETA DE BASE DE DATOS
+SCRIPT UNIFICADO: GESTION COMPLETA DE BASE DE DATOS
 ===================================================
 Crea la base de datos PostgreSQL si no existe, crea todas las tablas del modelo
 estrella y carga todos los datos desde los archivos parquet generados.
@@ -23,7 +23,7 @@ import yaml
 import time
 from dotenv import load_dotenv
 
-# Configuracin global
+# Configuracion global
 ROOT = Path(__file__).parent.parent
 CONFIG_DIR = ROOT / "config"
 PARQUET_DIR = ROOT / "data" / "outputs" / "parquet"
@@ -121,7 +121,23 @@ def create_all_tables():
                 descripcion TEXT,
                 unidad_medida TEXT NOT NULL,
                 estado TEXT NOT NULL,
-                fecha_creacion DATE NOT NULL
+                fecha_creacion DATE NOT NULL,
+                stock_inicial INTEGER DEFAULT 0,
+                total_compras INTEGER DEFAULT 0,
+                total_ventas INTEGER DEFAULT 0,
+                stock_actual INTEGER DEFAULT 0,
+                nivel_stock TEXT DEFAULT 'Sin Stock',
+                alerta_stock TEXT DEFAULT 'Sin Datos',
+                rotacion_stock DECIMAL(10,2) DEFAULT 0.0,
+                precio_compra_promedio DECIMAL(10,2) DEFAULT 0.0,
+                precio_venta_promedio DECIMAL(10,2) DEFAULT 0.0,
+                margen_unitario_usd DECIMAL(10,2) DEFAULT 0.0,
+                margen_porcentaje DECIMAL(5,1) DEFAULT 0.0,
+                valor_stock_actual_usd DECIMAL(12,2) DEFAULT 0.0,
+                inversion_total_usd DECIMAL(12,2) DEFAULT 0.0,
+                ingresos_totales_usd DECIMAL(12,2) DEFAULT 0.0,
+                roi_porcentaje DECIMAL(8,1) DEFAULT 0.0,
+                fecha_ultimo_calculo TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """,
         
@@ -332,6 +348,58 @@ def create_all_tables():
             conn.rollback()
     conn.close()
 
+    
+    # Agregar columnas faltantes a dim_producto si no existen
+    conn_update = None
+    try:
+        conn_update = get_dw_connection()
+        cur = conn_update.cursor()
+        
+        # Lista de nuevas columnas a agregar
+        new_columns = [
+            ("stock_inicial", "INTEGER DEFAULT 0"),
+            ("total_compras", "INTEGER DEFAULT 0"),
+            ("total_ventas", "INTEGER DEFAULT 0"),
+            ("stock_actual", "INTEGER DEFAULT 0"),
+            ("nivel_stock", "TEXT DEFAULT 'Sin Stock'"),
+            ("alerta_stock", "TEXT DEFAULT 'Sin Datos'"),
+            ("rotacion_stock", "DECIMAL(10,2) DEFAULT 0.0"),
+            ("precio_compra_promedio", "DECIMAL(10,2) DEFAULT 0.0"),
+            ("precio_venta_promedio", "DECIMAL(10,2) DEFAULT 0.0"),
+            ("margen_unitario_usd", "DECIMAL(10,2) DEFAULT 0.0"),
+            ("margen_porcentaje", "DECIMAL(5,1) DEFAULT 0.0"),
+            ("valor_stock_actual_usd", "DECIMAL(12,2) DEFAULT 0.0"),
+            ("inversion_total_usd", "DECIMAL(12,2) DEFAULT 0.0"),
+            ("ingresos_totales_usd", "DECIMAL(12,2) DEFAULT 0.0"),
+            ("roi_porcentaje", "DECIMAL(8,1) DEFAULT 0.0"),
+            ("fecha_ultimo_calculo", "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+        ]
+        
+        for col_name, col_definition in new_columns:
+            try:
+                cur.execute(f"ALTER TABLE dim_producto ADD COLUMN {col_name} {col_definition}")
+                print(f"    Columna agregada: {col_name}")
+            except psycopg2.Error as e:
+                if "already exists" in str(e) or "ya existe" in str(e):
+                    # Columna ya existe, continúa
+                    pass
+                else:
+                    print(f"    Warning al agregar {col_name}: {e}")
+        
+        conn_update.commit()
+        cur.close()
+        conn_update.close()
+        print("    Columnas adicionales en dim_producto verificadas/creadas")
+        
+    except Exception as e:
+        print(f"    Error actualizando dim_producto: {e}")
+        if conn_update:
+            try:
+                conn_update.rollback()
+                conn_update.close()
+            except:
+                pass
+    
     print(f"    {len(table_ddl)} tablas creadas exitosamente")
 
 def create_foreign_keys():
@@ -471,7 +539,13 @@ def fix_orphaned_references():
         
         if null_productos > 0:
             # Crear producto por defecto si no existe
-            cur.execute("INSERT INTO dim_producto (id_producto, sku, nombre, descripcion, unidad_medida, estado, fecha_creacion) VALUES ('0', 'SKU-DEFAULT', 'Producto Sin Especificar', 'Producto por defecto para registros sin especificar', 'unit', 'Activo', CURRENT_DATE) ON CONFLICT (id_producto) DO NOTHING")
+            cur.execute("""INSERT INTO dim_producto (
+                id_producto, sku, nombre, descripcion, unidad_medida, estado, fecha_creacion,
+                stock_inicial, total_compras, total_ventas, stock_actual, nivel_stock, alerta_stock
+            ) VALUES (
+                '0', 'SKU-DEFAULT', 'Producto Sin Especificar', 'Producto por defecto para registros sin especificar', 
+                'unit', 'Activo', CURRENT_DATE, 0, 0, 0, 0, 'Sin Stock', 'Sin Datos'
+            ) ON CONFLICT (id_producto) DO NOTHING""")
             
             # Actualizar registros huérfanos (incluyendo 'None' como string y 'nan')
             cur.execute("UPDATE fact_ventas SET id_producto = '0' WHERE id_producto IS NULL OR id_producto = '' OR id_producto = 'None' OR id_producto = 'nan'")

@@ -20,7 +20,6 @@ Dimensiones incluidas:
 - dim_promocion (promociones y descuentos)
 - dim_line_item (items de línea únicos)
 
-NOTA: Inventario/Stock se maneja dinámicamente en fact_ventas
 """
 
 import os
@@ -172,9 +171,10 @@ def build_dim_cliente():
     return save_dimension(df, "dim_cliente")
 
 def build_dim_producto():
-    """Construye dimensión de productos"""
-    print("Construyendo dim_producto...")
+    """Construye dimensión de productos con stock dinámico integrado"""
+    print("Construyendo dim_producto con stock dinámico...")
     
+    # PASO 1: Obtener productos base
     conn = get_oro_connection()
     
     query = """
@@ -196,9 +196,190 @@ def build_dim_producto():
     """
     
     df = pd.read_sql(query, conn)
+    
+    # PASO 2: Cargar compras dinámicas desde Excel
+    print("   Cargando compras dinámicas desde inputs...")
+    compras_file = ROOT / "data" / "inputs" / "Registro de compras - Punta Fina.xlsx"
+    
+    try:
+        if compras_file.exists():
+            compras_df = pd.read_excel(compras_file, sheet_name='Compras_Dinamicas')
+            print(f"   Compras dinámicas cargadas: {len(compras_df):,} registros")
+        else:
+            print("   Excel de compras no encontrado, calculando sin compras")
+            compras_df = pd.DataFrame()
+    except Exception as e:
+        print(f" Error leyendo compras: {e}")
+        compras_df = pd.DataFrame()
+    
+    # PASO 3: Calcular ENTRADAS por compras con análisis de precios
+    stock_inicial = {}
+    precio_compra_promedio = {}
+    total_inversion_compras = {}
+    
+    if not compras_df.empty:
+        print(" Calculando entradas por compras...")
+        
+        # Agrupar por producto
+        compras_agg = compras_df.groupby('id_producto').agg({
+            'cantidad_comprada': 'sum',
+            'precio_unitario_usd': 'mean',
+            'total_linea_usd': 'sum',
+            'rotacion_categoria': 'first' if 'rotacion_categoria' in compras_df.columns else lambda x: 'Sin Clasificar'
+        }).reset_index()
+        
+        # Convertir a diccionarios
+        stock_inicial = compras_agg.set_index('id_producto')['cantidad_comprada'].to_dict()
+        precio_compra_promedio = compras_agg.set_index('id_producto')['precio_unitario_usd'].to_dict()
+        total_inversion_compras = compras_agg.set_index('id_producto')['total_linea_usd'].to_dict()
+        
+        # Asegurar que las claves sean strings
+        stock_inicial = {str(k): v for k, v in stock_inicial.items()}
+        precio_compra_promedio = {str(k): v for k, v in precio_compra_promedio.items()}
+        total_inversion_compras = {str(k): v for k, v in total_inversion_compras.items()}
+    
+    # PASO 4: Calcular SALIDAS por ventas con análisis de precios
+    print("  Calculando salidas por ventas con precios...")
+    query_ventas = """
+    SELECT 
+        oli.product_id::text as id_producto,
+        SUM(oli.quantity) as cantidad_vendida,
+        AVG(oli.value) as precio_promedio_venta,
+        SUM(oli.value * oli.quantity) as ingresos_totales
+    FROM oro_order_line_item oli
+    INNER JOIN oro_order o ON oli.order_id = o.id
+    WHERE o.id IS NOT NULL
+    GROUP BY oli.product_id::text
+    """
+    
+    ventas_df = pd.read_sql(query_ventas, conn)
+    salidas = ventas_df.set_index('id_producto')['cantidad_vendida'].to_dict()
+    precio_venta_promedio = ventas_df.set_index('id_producto')['precio_promedio_venta'].to_dict()
+    ingresos_totales = ventas_df.set_index('id_producto')['ingresos_totales'].to_dict()
+    
+    # PASO 5: Calcular stock actual dinámico con análisis financiero
+    print("  Calculando stock dinámico con análisis de precios...")
+    stock_data = []
+    
+    for _, producto in df.iterrows():
+        id_prod = producto['id_producto']
+        
+        # Stock inicial (compras)
+        entradas_total = stock_inicial.get(id_prod, 0)
+        
+        # Salidas (ventas)
+        salidas_total = salidas.get(id_prod, 0)
+        
+        # Stock actual
+        stock_actual = max(0, entradas_total - salidas_total)
+        
+        # Precios
+        precio_compra = precio_compra_promedio.get(id_prod, 0)
+        precio_venta = precio_venta_promedio.get(id_prod, 0)
+        
+        # Análisis financiero
+        inversion_total = total_inversion_compras.get(id_prod, 0)
+        ingresos_product = ingresos_totales.get(id_prod, 0)
+        
+        # Margen de ganancia
+        if precio_compra > 0 and precio_venta > 0:
+            margen_unitario = precio_venta - precio_compra
+            margen_porcentaje = (margen_unitario / precio_venta) * 100
+        else:
+            margen_unitario = 0
+            margen_porcentaje = 0
+        
+        # Valor del stock actual
+        valor_stock_actual = stock_actual * precio_compra
+        
+        # ROI del producto CORREGIDO: basado en lo vendido, no en toda la inversión
+        if inversion_total > 0 and salidas_total > 0:
+            # Calcular ROI solo sobre productos vendidos
+            inversion_vendidos = salidas_total * precio_compra
+            if inversion_vendidos > 0:
+                roi_porcentaje = ((ingresos_product - inversion_vendidos) / inversion_vendidos) * 100
+            else:
+                roi_porcentaje = 0
+        else:
+            roi_porcentaje = 0
+        
+        # Clasificación de stock
+        if stock_actual == 0:
+            nivel_stock = "Sin Stock"
+            alerta_stock = "Crítico"
+        elif stock_actual <= 10:
+            nivel_stock = "Stock Bajo"
+            alerta_stock = "Alerta"
+        elif stock_actual <= 50:
+            nivel_stock = "Stock Medio"
+            alerta_stock = "Normal"
+        else:
+            nivel_stock = "Stock Alto"
+            alerta_stock = "Óptimo"
+        
+        stock_data.append({
+            'id_producto': id_prod,
+            'stock_inicial': int(entradas_total),
+            'total_compras': int(entradas_total),
+            'total_ventas': int(salidas_total),
+            'stock_actual': int(stock_actual),
+            'nivel_stock': nivel_stock,
+            'alerta_stock': alerta_stock,
+            'rotacion_stock': round(salidas_total / max(1, entradas_total), 2),
+            'precio_compra_promedio': round(precio_compra, 2),
+            'precio_venta_promedio': round(precio_venta, 2),
+            'margen_unitario_usd': round(margen_unitario, 2),
+            'margen_porcentaje': round(margen_porcentaje, 1),
+            'valor_stock_actual_usd': round(valor_stock_actual, 2),
+            'inversion_total_usd': round(inversion_total, 2),
+            'ingresos_totales_usd': round(ingresos_product, 2),
+            'roi_porcentaje': round(roi_porcentaje, 1),
+            'fecha_ultimo_calculo': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        })
+    
+    # PASO 6: Unir productos con stock
+    stock_df = pd.DataFrame(stock_data)
+    df_final = df.merge(stock_df, on='id_producto', how='left')
+    
+    # Llenar valores nulos
+    df_final = df_final.fillna({
+        'stock_inicial': 0,
+        'total_compras': 0,
+        'total_ventas': 0,
+        'stock_actual': 0,
+        'nivel_stock': 'Sin Stock',
+        'alerta_stock': 'Sin Datos',
+        'rotacion_stock': 0.0,
+        'precio_compra_promedio': 0.0,
+        'precio_venta_promedio': 0.0,
+        'margen_unitario_usd': 0.0,
+        'margen_porcentaje': 0.0,
+        'valor_stock_actual_usd': 0.0,
+        'inversion_total_usd': 0.0,
+        'ingresos_totales_usd': 0.0,
+        'roi_porcentaje': 0.0,
+        'fecha_ultimo_calculo': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    })
+    
     conn.close()
     
-    return save_dimension(df, "dim_producto")
+    # Estadísticas avanzadas
+    productos_con_stock = len(df_final[df_final['stock_actual'] > 0])
+    stock_total = df_final['stock_actual'].sum()
+    productos_criticos = len(df_final[df_final['alerta_stock'] == 'Crítico'])
+    valor_total_stock = df_final['valor_stock_actual_usd'].sum()
+    margen_promedio = df_final[df_final['margen_porcentaje'] > 0]['margen_porcentaje'].mean()
+    roi_promedio = df_final[df_final['roi_porcentaje'] != 0]['roi_porcentaje'].mean()
+    
+    print(f"   Stock dinámico calculado:")
+    print(f"      Productos con stock: {productos_con_stock}/{len(df_final)}")
+    print(f"     Stock total: {stock_total:,.0f} unidades") 
+    print(f"      Valor stock: ${valor_total_stock:,.2f} USD")
+    print(f"      Margen promedio: {margen_promedio:.1f}%")
+    print(f"      ROI promedio: {roi_promedio:.1f}%")
+    print(f"      Productos críticos: {productos_criticos}")
+    
+    return save_dimension(df_final, "dim_producto")
 
 def build_dim_usuario():
     """Construye dimensión de usuarios"""
